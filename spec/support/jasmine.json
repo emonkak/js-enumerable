@@ -1,0 +1,13 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "../node_modules/babel-polyfill/browser.js",
+    "**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "../node_modules/babel-core/register.js",
+    "helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}
