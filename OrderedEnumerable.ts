@@ -13,7 +13,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
     }
 
     [Symbol.iterator](): Iterator<TElement> {
-        return this.toArray().values()
+        return this.toArray()[Symbol.iterator]()
     }
 
     thenBy<TKey>(keySelector?: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {

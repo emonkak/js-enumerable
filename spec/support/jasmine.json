@@ -1,7 +1,6 @@
 {
   "spec_dir": "spec",
   "spec_files": [
-    "../node_modules/babel-polyfill/browser.js",
     "**/*[sS]pec.js"
   ],
   "helpers": [

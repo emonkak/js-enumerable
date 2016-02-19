@@ -10,7 +10,7 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
     }
 
     [Symbol.iterator](): Iterator<TElement> {
-        return this._source.toArrayPartition(this._minIndex, this._maxIndex).values()
+        return this._source.toArrayPartition(this._minIndex, this._maxIndex)[Symbol.iterator]()
     }
 
     skip(count: number): Partition<TElement> {
