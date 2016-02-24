@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --rootDir . --outDir dist",
-    "watch": "tsc --watch --rootDir . --outDir dist",
-    "test": "jasmine"
+    "build": "tsc --rootDir src --outDir dist",
+    "clean": "rm -fr coverage dist",
+    "coverage": "isparta cover --include-all-sources --report html --report text node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "watch": "tsc --watch --rootDir src --outDir dist"
   },
   "author": "Shota Nozaki",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-preset-es2015-node5": "^1.1.2",
+    "babel-preset-power-assert": "^1.0.0",
     "babel-preset-stage-0": "^6.3.13",
-    "jasmine": "^2.4.1",
+    "cash-rm": "^0.2.0",
+    "eslint": "^2.4.0",
+    "isparta": "^4.0.0",
+    "mocha": "^2.4.5",
+    "power-assert": "^1.3.1",
+    "sinon": "^1.17.3",
     "typescript": "^1.7.5"
   }
 }
