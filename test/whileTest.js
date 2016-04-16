@@ -1,14 +1,14 @@
-import _while from '../dist/while'
-import assert from 'assert'
+import _while from '../dist/while';
+import assert from 'assert';
 
 describe('while()', function() {
     it('should generates an enumerable sequence by repeating a source sequence as long as the given loop condition holds', function() {
-        let x = 5
+        let x = 5;
         const xs = {
             [Symbol.iterator]: function*() {
                 yield x--
             }
-        }
-        assert.deepEqual(Array.from(xs::_while(() => x > 0)), [5, 4, 3, 2, 1])
-    })
-})
+        };
+        assert.deepEqual(Array.from(xs::_while(() => x > 0)), [5, 4, 3, 2, 1]);
+    });
+});

@@ -1,5 +1,5 @@
-import EmptyPartition from './internal/EmptyPartition'
+import EmptyPartition from './internal/EmptyPartition';
 
 export default function ignoreElements<TSource>(): Iterable<TSource> {
-    return new EmptyPartition<TSource>()
+    return new EmptyPartition<TSource>();
 }

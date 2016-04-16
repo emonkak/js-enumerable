@@ -1,3 +1,3 @@
-type IComparer<T> = (first: T, second: T) => number
+type IComparer<T> = (first: T, second: T) => number;
 
-export default IComparer
+export default IComparer;

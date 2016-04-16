@@ -1,48 +1,48 @@
-import Partition from './Partition'
-import { noElements } from './errors'
+import Partition from './Partition';
+import { noElements } from './errors';
 
 export default class EmptyPartition<TElement> extends Partition<TElement> implements Iterator<TElement> {
     constructor() {
-        super()
+        super();
     }
 
     [Symbol.iterator](): Iterator<TElement> {
-        return this
+        return this;
     }
 
     next(): IteratorResult<TElement> {
-        return { done: true }
+        return { done: true };
     }
 
     skip(count: number): Partition<TElement> {
-        return this
+        return this;
     }
 
     take(count: number): Partition<TElement> {
-        return this
+        return this;
     }
 
     first(): TElement {
-        throw noElements()
+        throw noElements();
     }
 
     firstOrDefault(defaultValue?: TElement): TElement {
-        return defaultValue
+        return defaultValue;
     }
 
     last(): TElement {
-        throw noElements()
+        throw noElements();
     }
 
     lastOrDefault(defaultValue?: TElement): TElement {
-        return defaultValue
+        return defaultValue;
     }
 
     elementAt(index: number): TElement {
-        throw noElements()
+        throw noElements();
     }
 
     elementAtOrDefault(index: number, defaultValue?: TElement): TElement {
-        return defaultValue
+        return defaultValue;
     }
 }

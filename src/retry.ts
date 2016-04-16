@@ -1,17 +1,14 @@
-import _catch from './static/catch'
-import repeat from './static/repeat'
-
 export default function* retry<TSource>(retryCount?: number): Iterable<TSource> {
-    if (retryCount == null) retryCount = Infinity
-    let error: any
+    if (retryCount == null) retryCount = Infinity;
+    let error: any;
     while (retryCount-- > 0) {
-        error = null
+        error = null;
         try {
-            yield* this
+            yield* this;
         } catch (e) {
-            error = e
+            error = e;
         }
-        if (error == null) break
+        if (error == null) break;
     }
-    if (error != null) throw error
+    if (error != null) throw error;
 }

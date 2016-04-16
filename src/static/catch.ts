@@ -1,13 +1,13 @@
 export default function* _catch<TSource>(...sources: Iterable<TSource>[]): Iterable<TSource> {
-    let error: any
+    let error: any;
     for (const source of sources) {
-        error = null
+        error = null;
         try {
-            yield* source
+            yield* source;
         } catch (e) {
-            error = e
+            error = e;
         }
-        if (error == null) break
+        if (error == null) break;
     }
-    if (error != null) throw error
+    if (error != null) throw error;
 }

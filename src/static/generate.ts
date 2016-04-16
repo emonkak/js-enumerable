@@ -5,6 +5,6 @@ export default function* generate<TState, TResult>(
     resultSelector: (state: TState) => TResult
 ): Iterable<TResult> {
     for (let state = initialState; condition(state); state = iterate(state)) {
-        yield resultSelector(state)
+        yield resultSelector(state);
     }
 }

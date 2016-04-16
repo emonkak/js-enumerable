@@ -7,6 +7,7 @@
     "build": "tsc --rootDir src --outDir dist",
     "clean": "rm -fr coverage dist",
     "coverage": "isparta cover --include-all-sources --report html --report text node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register",
+    "lint": "eslint dist",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "watch": "tsc --watch --rootDir src --outDir dist"
   },
@@ -14,8 +15,8 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.4.5",
+    "babel-eslint": "^6.0.2",
     "babel-preset-es2015-node5": "^1.1.2",
-    "babel-preset-power-assert": "^1.0.0",
     "babel-preset-stage-0": "^6.3.13",
     "cash-rm": "^0.2.0",
     "eslint": "^2.4.0",
