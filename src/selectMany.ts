@@ -1,5 +1,5 @@
-export default function* selectMany<TSource, TResult>(collectionSelector: (element: TSource) => Iterable<TResult>): Iterable<TResult> {
-    for (const element of this as Iterable<TSource>) {
+export default function* selectMany<TSource, TResult>(this: Iterable<TSource>, collectionSelector: (element: TSource) => Iterable<TResult>): Iterable<TResult> {
+    for (const element of this) {
         yield* collectionSelector(element);
     }
 }

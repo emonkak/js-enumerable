@@ -1,7 +1,7 @@
-export default function min<TSource>(selector: (element: TSource) => number): number {
+export default function min<TSource>(this: Iterable<TSource>, selector: (element: TSource) => number): number {
     if (selector == null) selector = (x) => x as any;
     let min = Infinity;
-    for (const element of this as Iterable<TSource>) {
+    for (const element of this) {
         const value = selector(element);
         if (min > value) min = value;
     }

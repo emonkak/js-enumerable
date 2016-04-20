@@ -1,4 +1,4 @@
-export default function* onErrorResumeNext<TSource>(...sources: Iterable<TSource>[]): Iterable<TSource> {
+export default function* onErrorResumeNext<TSource>(this: Iterable<TSource>, ...sources: Iterable<TSource>[]): Iterable<TSource> {
     try {
         yield* this;
     } catch (error) {

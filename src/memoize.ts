@@ -1,4 +1,4 @@
-export default function memoize<TSource>(): Iterable<TSource> {
+export default function memoize<TSource>(this: Iterable<TSource>): Iterable<TSource> {
     return new MemoizeIterator(this[Symbol.iterator]() as Iterator<TSource>);
 }
 

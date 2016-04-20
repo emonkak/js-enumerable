@@ -1,4 +1,4 @@
-export default function* retry<TSource>(retryCount?: number): Iterable<TSource> {
+export default function* retry<TSource>(this: Iterable<TSource>, retryCount?: number): Iterable<TSource> {
     if (retryCount == null) retryCount = Infinity;
     let error: any;
     while (retryCount-- > 0) {

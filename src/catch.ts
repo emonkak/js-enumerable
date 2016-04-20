@@ -1,4 +1,4 @@
-export default function* _catch<TSource, TException>(handler: (exception: TException) => Iterable<TSource>): Iterable<TSource> {
+export default function* _catch<TSource, TException>(this: Iterable<TSource>, handler: (exception: TException) => Iterable<TSource>): Iterable<TSource> {
     try {
         yield* this;
     } catch (error) {

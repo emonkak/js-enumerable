@@ -1,4 +1,4 @@
-import _if from '../dist/if';
+import _if from '../../dist/static/if';
 import assert from 'assert';
 
 describe('if()', function() {

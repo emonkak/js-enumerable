@@ -1,14 +1,14 @@
-export default function count<TSource>(predicate?: (item: TSource) => boolean): number {
+export default function count<TSource>(this: Iterable<TSource>, predicate?: (item: TSource) => boolean): number {
     if (predicate) {
         let count = 0;
-        for (const element of this as Iterable<TSource>) {
+        for (const element of this) {
             if (predicate(element)) count++;
         }
         return count;
     } else {
-        if ('length' in this) return this.length;
+        if (Array.isArray(this)) return (this as any).length;
         let count = 0;
-        for (const element of this as Iterable<TSource>) {
+        for (const element of this) {
             count++;
         }
         return count;

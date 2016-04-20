@@ -1,4 +1,4 @@
-export default function* doWhile<TSource>(condition: () => boolean): Iterable<TSource> {
+export default function* doWhile<TSource>(this: Iterable<TSource>, condition: () => boolean): Iterable<TSource> {
     do {
         yield* this;
     } while (condition());

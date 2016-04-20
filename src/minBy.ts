@@ -1,4 +1,4 @@
-export default function minBy<TSource, TKey>(keySelector: (element: TSource) => TKey): TSource[] {
+export default function minBy<TSource, TKey>(this: Iterable<TSource>, keySelector: (element: TSource) => TKey): TSource[] {
     const iterator = this[Symbol.iterator]() as Iterator<TSource>;
 
     let result: TSource[] = [];

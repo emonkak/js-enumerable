@@ -1,12 +1,12 @@
 import Partition from './internal/Partition';
 import { moreThanOneMatch, noElements } from './internal/errors';
 
-export default function single<TSource>(predicate?: (element: TSource) => boolean): TSource {
+export default function single<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean): TSource {
     if (predicate) {
         let value: TSource;
         let hasValue = false;
 
-        for (const element of this as Iterable<TSource>) {
+        for (const element of this) {
             if (predicate(element)) {
                 if (hasValue) throw moreThanOneMatch();
                 value = element;
@@ -17,11 +17,11 @@ export default function single<TSource>(predicate?: (element: TSource) => boolea
         if (hasValue) return value;
     } else {
         if (Array.isArray(this)) {
-            switch (this.length) {
+            switch ((this as any).length) {
             case 0:
                 throw noElements();
             case 1:
-                return this[0];
+                return (this as any)[0];
             default:
                 throw moreThanOneMatch();
             }
@@ -29,7 +29,7 @@ export default function single<TSource>(predicate?: (element: TSource) => boolea
             let value: TSource;
             let hasValue = false;
 
-            for (const element of this as Iterable<TSource>) {
+            for (const element of this) {
                 if (hasValue) throw moreThanOneMatch();
                 value = element;
                 hasValue = true;

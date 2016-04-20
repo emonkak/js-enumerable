@@ -1,7 +1,7 @@
-export default function* defaultIfEmpty<TSource>(defaultValue: TSource): Iterable<TSource> {
+export default function* defaultIfEmpty<TSource>(this: Iterable<TSource>, defaultValue: TSource): Iterable<TSource> {
     let hasValue = false;
 
-    for (const element of this as Iterable<TSource>) {
+    for (const element of this) {
         yield element;
         hasValue = true;
     }
