@@ -11,7 +11,7 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
     }
 
     next(): IteratorResult<TElement> {
-        return { done: true };
+        return { done: true, value: null };
     }
 
     skip(count: number): Partition<TElement> {

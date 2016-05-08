@@ -1,15 +1,17 @@
 language: node_js
 node_js:
-  - "5"
-  - "4"
-  - "0.12"
-  - "iojs"
+  - '5'
+  - '4'
+  - '0.12'
+  - 'iojs'
+before_script:
+  - $(npm bin)/tsc --version
 script:
   - npm run build
   - npm test
   - npm run lint
-after_script:
-  - npm run coverage
+after_success:
+  - npm run cover
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:
