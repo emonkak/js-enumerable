@@ -1,6 +1,6 @@
 export default function* repeat<TSource>(this: Iterable<TSource>, count?: number): Iterable<TSource> {
     if (count == null)  {
-        for (;;) {
+        while (true) {
             yield* this;
         }
     } else {

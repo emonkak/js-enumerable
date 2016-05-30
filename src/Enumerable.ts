@@ -19,7 +19,7 @@ export default class Enumerable<TSource> implements ILiftable<TSource> {
     }
 
     static defer<TSource>(iterableFactory: () => Iterable<TSource>): Enumerable<TSource> {
-        return new Enumerable(defer(iterableFactory))
+        return new Enumerable(defer(iterableFactory));
     }
 
     static generate<TState, TResult>(initialState: TState, condition: (state: TState) => boolean, iterate: (state: TState) => TState, resultSelector: (state: TState) => TResult): Enumerable<TResult> {

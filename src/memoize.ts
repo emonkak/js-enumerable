@@ -14,7 +14,7 @@ class MemoizeIterator<TElement> implements Iterable<TElement> {
 
     *[Symbol.iterator](): Iterator<TElement> {
         let index = 0;
-        for (;;) {
+        while (true) {
             if (index < this._bufferSize) {
                 yield this._buffer[index];
             } else {

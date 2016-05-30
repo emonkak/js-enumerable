@@ -2,7 +2,7 @@ import IComparer from './IComparer';
 import pivotPosition from './pivotPosition';
 
 export default function quickSelect<T>(array: Array<T>, comparer: IComparer<T>, left: number, right: number, n: number): T {
-    for (;;) {
+    while (true) {
         if (left === right) return array[left];
 
         const pivotIndex = left + ((right - left) >> 1);

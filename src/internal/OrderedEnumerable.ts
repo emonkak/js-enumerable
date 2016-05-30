@@ -131,7 +131,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
                 result = iterator.next();
             }
 
-            return value
+            return value;
         }
 
         return defaultValue;
@@ -232,7 +232,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
             if (firstKey < secondKey) return this._descending ? 1 : -1;
             if (firstKey > secondKey) return this._descending ? -1 : 1;
             return next(first, second);
-        }
+        };
         return this._parent ? this._parent._getComparer(comparer) : comparer;
     }
 }

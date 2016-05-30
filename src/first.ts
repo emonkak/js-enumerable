@@ -7,7 +7,7 @@ export default function first<TSource>(this: Iterable<TSource>, predicate?: (ele
             if (predicate(element)) return element;
         }
     } else {
-        if (this instanceof Partition) return (this as any).first()
+        if (this instanceof Partition) return (this as any).first();
         if (Array.isArray(this)) {
             if ((this as any).length > 0) return (this as any)[0];
         } else {

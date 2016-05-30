@@ -1,6 +1,6 @@
-import { argumentOutOfRange } from '../internal/errors'
-import EmptyPartition from '../internal/EmptyPartition'
-import Partition from '../internal/Partition'
+import { argumentOutOfRange } from '../internal/errors';
+import EmptyPartition from '../internal/EmptyPartition';
+import Partition from '../internal/Partition';
 
 export default function range(start: number, count: number): Iterable<number> {
     return new RangePartition(start, count);
