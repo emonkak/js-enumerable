@@ -1,7 +1,7 @@
-import ILiftable from '../internal/ILiftable';
+import IEnumerable from '../IEnumerable';
 import orderByDescendingFn from '../orderByDescending';
 
-export default function orderByDescending<TSource>(this: ILiftable<TSource>): ILiftable<TSource>;
-export default function orderByDescending<TSource, TKey>(this: ILiftable<TSource>, keySelector?: (value: TSource) => TKey): ILiftable<TSource> {
+export default function orderByDescending<TSource>(this: IEnumerable<TSource>): IEnumerable<TSource>;
+export default function orderByDescending<TSource, TKey>(this: IEnumerable<TSource>, keySelector?: (value: TSource) => TKey): IEnumerable<TSource> {
     return this.lift<TSource>(orderByDescendingFn.call(this, keySelector));
 }

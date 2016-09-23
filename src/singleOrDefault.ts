@@ -1,5 +1,3 @@
-import Partition from './internal/Partition';
-
 export default function singleOrDefault<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean, defaultValue: TSource = null): TSource {
     if (predicate) {
         let value: TSource;

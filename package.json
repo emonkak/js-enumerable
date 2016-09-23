@@ -28,9 +28,9 @@
     "cash-rm": "^0.2.0",
     "coveralls": "^2.11.9",
     "isparta": "^4.0.0",
-    "mocha": "^2.4.5",
+    "mocha": "^3.0.2",
     "sinon": "^1.17.3",
     "tslint": "^3.10.2",
-    "typescript": "^1.9.0-dev.20160507"
+    "typescript": "^2.0.3"
   }
 }

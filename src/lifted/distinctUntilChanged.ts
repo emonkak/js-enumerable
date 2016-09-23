@@ -1,7 +1,7 @@
-import ILiftable from '../internal/ILiftable';
+import IEnumerable from '../IEnumerable';
 import distinctUntilChangedFn from '../distinctUntilChanged';
 
-export default function distinctUntilChanged<TSource>(this: ILiftable<TSource>): ILiftable<TSource>;
-export default function distinctUntilChanged<TSource, TKey>(this: ILiftable<TSource>, keySelector?: (element: TSource) => TKey): ILiftable<TSource> {
+export default function distinctUntilChanged<TSource>(this: IEnumerable<TSource>): IEnumerable<TSource>;
+export default function distinctUntilChanged<TSource, TKey>(this: IEnumerable<TSource>, keySelector?: (element: TSource) => TKey): IEnumerable<TSource> {
     return this.lift<TSource>(distinctUntilChangedFn.call(this, keySelector));
 }

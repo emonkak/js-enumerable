@@ -4,4 +4,3 @@ export default function* _do<TSource>(this: Iterable<TSource>, action: (element:
         yield element;
     }
 }
-

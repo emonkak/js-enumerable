@@ -6,7 +6,7 @@ export default function count<TSource>(this: Iterable<TSource>, predicate?: (ite
         }
         return count;
     } else {
-        if (Array.isArray(this)) return (this as any).length;
+        if (Array.isArray(this)) return (this as Array<TSource>).length;
         let count = 0;
         for (const element of this) {
             count++;

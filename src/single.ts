@@ -1,4 +1,3 @@
-import Partition from './internal/Partition';
 import { moreThanOneMatch, noElements } from './internal/errors';
 
 export default function single<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean): TSource {

@@ -1,6 +1,6 @@
-import ILiftable from '../internal/ILiftable';
+import IEnumerable from '../IEnumerable';
 import doWhileFn from '../doWhile';
 
-export default function doWhile<TSource>(this: ILiftable<TSource>, condition: () => boolean): ILiftable<TSource> {
+export default function doWhile<TSource>(this: IEnumerable<TSource>, condition: () => boolean): IEnumerable<TSource> {
     return this.lift<TSource>(doWhileFn.call(this, condition));
 }

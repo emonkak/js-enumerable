@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
         "module": "commonjs",
+        "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
+        "noImplicitReturns": true,
         "noImplicitThis": true,
         "target": "es2015"
     },

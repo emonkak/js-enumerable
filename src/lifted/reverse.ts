@@ -1,6 +1,6 @@
-import ILiftable from '../internal/ILiftable';
+import IEnumerable from '../IEnumerable';
 import reverseFn from '../reverse';
 
-export default function reverse<TSource>(this: ILiftable<TSource>): ILiftable<TSource> {
+export default function reverse<TSource>(this: IEnumerable<TSource>): IEnumerable<TSource> {
     return this.lift<TSource>(reverseFn.call(this));
 }

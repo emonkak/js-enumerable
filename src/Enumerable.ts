@@ -1,49 +1,108 @@
-import ILiftable from './internal/ILiftable';
-import _catch from './static/catch';
-import _if from './static/if';
-import _return from './static/return';
-import concat from './static/concat';
-import defer from './static/defer';
-import generate from './static/generate';
-import range from './static/range';
-import repeat from './static/repeat';
-import zip from './static/zip';
+import IEnumerable from './IEnumerable';
+import aggregate from './aggregate';
+import all from './all';
+import any from './any';
+import average from './average';
+import buffer from './lifted/buffer';
+import _catch from './lifted/catch';
+import concat from './lifted/concat';
+import count from './count';
+import defaultIfEmpty from './lifted/defaultIfEmpty';
+import distinct from './lifted/distinct';
+import distinctUntilChanged from './lifted/distinctUntilChanged';
+import _do from './lifted/do';
+import doWhile from './lifted/doWhile';
+import elementAt from './elementAt';
+import elementAtOrDefault from './elementAtOrDefault';
+import except from './lifted/except';
+import _finally from './lifted/finally';
+import first from './first';
+import firstOrDefault from './firstOrDefault';
+import forEach from './forEach';
+import groupBy from './lifted/groupBy';
+import groupJoin from './lifted/groupJoin';
+import ignoreElements from './lifted/ignoreElements';
+import intersect from './lifted/intersect';
+import isEmpty from './isEmpty';
+import join from './lifted/join';
+import last from './last';
+import lastOrDefault from './lastOrDefault';
+import max from './max';
+import maxBy from './maxBy';
+import memoize from './lifted/memoize';
+import min from './min';
+import minBy from './minBy';
+import onErrorResumeNext from './lifted/onErrorResumeNext';
+import orderBy from './lifted/orderBy';
+import orderByDescending from './lifted/orderByDescending';
+import repeat from './lifted/repeat';
+import retry from './lifted/retry';
+import reverse from './lifted/reverse';
+import scan from './lifted/scan';
+import select from './lifted/select';
+import selectMany from './lifted/selectMany';
+import single from './single';
+import singleOrDefault from './singleOrDefault';
+import skip from './lifted/skip';
+import skipLast from './lifted/skipLast';
+import skipWhile from './lifted/skipWhile';
+import startWith from './lifted/startWith';
+import staticCatch from './static/catch';
+import staticConcat from './static/concat';
+import staticDefer from './static/defer';
+import staticGenerate from './static/generate';
+import staticIf from './static/if';
+import staticRange from './static/range';
+import staticRepeat from './static/repeat';
+import staticReturn from './static/return';
+import staticZip from './static/zip';
+import sum from './sum';
+import take from './lifted/take';
+import takeLast from './lifted/takeLast';
+import takeWhile from './lifted/takeWhile';
+import toArray from './toArray';
+import toLookup from './toLookup';
+import toMap from './toMap';
+import union from './lifted/union';
+import where from './lifted/where';
+import _while from './lifted/while';
+import zip from './lifted/zip';
 
-export default class Enumerable<TSource> implements ILiftable<TSource> {
+export default class Enumerable<TSource> implements IEnumerable<TSource> {
     static catch<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource> {
-        return new Enumerable(_catch(...sources));
+        return new Enumerable(staticCatch(...sources));
     }
 
     static concat<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource> {
-        return new Enumerable(concat(...sources));
+        return new Enumerable(staticConcat(...sources));
     }
 
     static defer<TSource>(iterableFactory: () => Iterable<TSource>): Enumerable<TSource> {
-        return new Enumerable(defer(iterableFactory));
+        return new Enumerable(staticDefer(iterableFactory));
     }
 
     static generate<TState, TResult>(initialState: TState, condition: (state: TState) => boolean, iterate: (state: TState) => TState, resultSelector: (state: TState) => TResult): Enumerable<TResult> {
-        return new Enumerable(generate(initialState, condition, iterate, resultSelector));
+        return new Enumerable(staticGenerate(initialState, condition, iterate, resultSelector));
     }
 
     static if<TResult>(condition: () => boolean, thenSource: Iterable<TResult>, elseSource: Iterable<TResult>): Enumerable<TResult> {
-        return new Enumerable(_if(condition, thenSource, elseSource));
+        return new Enumerable(staticIf(condition, thenSource, elseSource));
     }
 
     static range(start: number, count: number): Enumerable<number> {
-        return new Enumerable(range(start, count));
+        return new Enumerable(staticRange(start, count));
     }
 
     static repeat<TSource>(element: TSource, count?: number): Enumerable<TSource> {
-        return new Enumerable(repeat(element, count));
+        return new Enumerable(staticRepeat(element, count));
     }
 
     static return<TSource>(element: TSource): Enumerable<TSource> {
-        return new Enumerable(_return(element));
+        return new Enumerable(staticReturn(element));
     }
 
     static zip<TFirst, TSecond, TResult>(first: Iterable<TFirst>, second: Iterable<TSecond>, resultSelector: (first: TFirst, second: TSecond) => TResult): Enumerable<TResult> {
-        return new Enumerable(zip(first, second, resultSelector));
+        return new Enumerable(staticZip(first, second, resultSelector));
     }
 
     constructor(private _source: Iterable<TSource>) {
@@ -57,86 +116,63 @@ export default class Enumerable<TSource> implements ILiftable<TSource> {
         return new Enumerable(source);
     }
 
-    // Mixins:
-    aggregate: <TAccumulate>(seed: TAccumulate, func: (result: TAccumulate, element: TSource) => TAccumulate) => TAccumulate;
-    all: (predicate?: (element: TSource) => boolean) => boolean;
-    any: (predicate?: (element: TSource) => boolean) => boolean;
-    average: (selector?: (element: TSource) => number) => number;
-    buffer: (count: number, skip?: number) => ILiftable<TSource[]>;
-    catch: <TException>(handler: (exception: TException) => Iterable<TSource>) => ILiftable<TSource>;
-    concat: (...sources: Iterable<TSource>[]) => ILiftable<TSource>;
-    count: (predicate?: (item: TSource) => boolean) => number;
-    defaultIfEmpty: (defaultValue: TSource) => ILiftable<TSource>;
-    distinct: {
-        (): ILiftable<TSource>;
-        <TKey>(keySelector?: (element: TSource) => Iterable<TKey>): ILiftable<TSource>;
-    };
-    distinctUntilChanged: {
-        (): ILiftable<TSource>;
-        <TSource, TKey>(keySelector?: (element: TSource) => TKey): ILiftable<TSource>;
-    };
-    do: (action: (element: TSource) => void) => ILiftable<TSource>;
-    doWhile: (condition: () => boolean) => ILiftable<TSource>;
-    elementAt: (index: number) => TSource;
-    elementAtOrDefault: (index: number, defaultValue?: TSource) => TSource;
-    except: (second: Iterable<TSource>) => ILiftable<TSource>;
-    finally: (finallyAction: () => void) => ILiftable<TSource>;
-    first: (predicate?: (element: TSource) => boolean) => TSource;
-    firstOrDefault: (predicate?: (element: TSource) => boolean, defaultValue?: TSource) => TSource;
-    forEach: (action: (element: TSource) => void) => void;
-    groupBy: {
-        <TKey>(keySelector: (element: TSource) => TKey): ILiftable<[TKey, TSource]>;
-        <TKey, TElement>(keySelector: (element: TSource) => TKey, elementSelector: (element: TSource) => TElement): ILiftable<[TKey, TElement]>;
-        <TKey, TElement, TResult>(keySelector: (element: TSource) => TKey, elementSelector?: (element: TSource) => TElement, resultSelector?: (key: TKey, elements: TElement[]) => TResult): ILiftable<TResult>;
-    };
-    groupJoin: <TInner, TKey, TResult>(inner: Iterable<TInner>, outerKeySelector: (element: TSource) => TKey, innerKeySelector: (element: TInner) => TKey, resultSelector: (outer: TSource, inner: TInner[]) => TResult) => ILiftable<TResult>;
-    ignoreElements: () => ILiftable<TSource>;
-    intersect: (second: Iterable<TSource>) => ILiftable<TSource>;
-    isEmpty: () => boolean;
-    join: <TInner, TKey, TResult>(inner: Iterable<TInner>, outerKeySelector: (element: TSource) => TKey, innerKeySelector: (element: TInner) => TKey, resultSelector: (outer: TSource, inner: TInner) => TResult) => ILiftable<TResult>;
-    last: (predicate?: (value: TSource) => boolean) => TSource;
-    lastOrDefault: (predicate?: (value: TSource) => boolean, defaultValue?: TSource) => TSource;
-    max: (selector: (element: TSource) => number) => number;
-    maxBy: <TKey>(keySelector: (element: TSource) => TKey) => TSource[];
-    memoize: () => ILiftable<TSource>;
-    min: (selector: (element: TSource) => number) => number;
-    minBy: <TKey>(keySelector: (element: TSource) => TKey) => TSource[];
-    onErrorResumeNext: (...sources: Iterable<TSource>[]) => ILiftable<TSource>;
-    orderBy: {
-        (): ILiftable<TSource>;
-        <TKey>(keySelector?: (value: TSource) => TKey): ILiftable<TSource>;
-    };
-    orderByDescending: {
-        (): ILiftable<TSource>;
-        <TKey>(keySelector?: (value: TSource) => TKey): ILiftable<TSource>;
-    };
-    repeat: (count?: number) => ILiftable<TSource>;
-    retry: (retryCount?: number) => ILiftable<TSource>;
-    reverse: () => ILiftable<TSource>;
-    scan: <TAccumulate>(seed: TAccumulate, func: (result: TAccumulate, element: TSource) => TAccumulate) => ILiftable<TAccumulate>;
-    select: <TResult>(selector: (element: TSource) => TResult) => ILiftable<TResult>;
-    selectMany: <TResult>(collectionSelector: (element: TSource) => ILiftable<TResult>) => ILiftable<TResult>;
-    single: (predicate?: (element: TSource) => boolean) => TSource;
-    singleOrDefault: (predicate?: (element: TSource) => boolean, defaultValue?: TSource) => TSource;
-    skip: (count: number) => ILiftable<TSource>;
-    skipLast: (count: number) => ILiftable<TSource>;
-    skipWhile: (predicate: (element: TSource) => boolean) => ILiftable<TSource>;
-    startWith: (...elements: TSource[]) => ILiftable<TSource>;
-    sum: (selector?: (element: TSource) => number) => number;
-    take: (count: number) => ILiftable<TSource>;
-    takeLast: (count: number) => ILiftable<TSource>;
-    takeWhile: (predicate: (element: TSource) => boolean) => ILiftable<TSource>;
-    toArray: () => TSource[];
-    toLookup: {
-        <TKey>(keySelector: (element: TSource) => TKey): Map<TKey, TSource[]>;
-        <TKey, TElement>(keySelector: (element: TSource) => TKey, elementSelector?: (element: TSource) => TElement): Map<TKey, TElement[]>;
-    };
-    toMap: {
-        <TKey>(keySelector: (element: TSource) => TKey): Map<TKey, TSource>;
-        <TKey, TElement>(keySelector: (element: TSource) => TKey, elementSelector?: (element: TSource) => TElement): Map<TKey, TElement>;
-    };
-    union: (second: Iterable<TSource>) => ILiftable<TSource>;
-    where: (predicate: (item: TSource) => boolean) => ILiftable<TSource>;
-    while: (condition: () => boolean) => ILiftable<TSource>;
-    zip: <TSecond, TResult>(second: Iterable<TSecond>, resultSelector: (first: TSource, second: TSecond) => TResult) => ILiftable<TResult>;
+    readonly aggregate = aggregate;
+    readonly all = all;
+    readonly any = any;
+    readonly average = average;
+    readonly buffer = buffer;
+    readonly catch = _catch;
+    readonly concat = concat;
+    readonly count = count;
+    readonly defaultIfEmpty = defaultIfEmpty;
+    readonly distinct = distinct;
+    readonly distinctUntilChanged = distinctUntilChanged;
+    readonly do = _do;
+    readonly doWhile = doWhile;
+    readonly elementAt = elementAt;
+    readonly elementAtOrDefault = elementAtOrDefault;
+    readonly except = except;
+    readonly finally = _finally;
+    readonly first = first;
+    readonly firstOrDefault = firstOrDefault;
+    readonly forEach = forEach;
+    readonly groupBy = groupBy;
+    readonly groupJoin = groupJoin;
+    readonly ignoreElements = ignoreElements;
+    readonly intersect = intersect;
+    readonly isEmpty = isEmpty;
+    readonly join = join;
+    readonly last = last;
+    readonly lastOrDefault = lastOrDefault;
+    readonly max = max;
+    readonly maxBy = maxBy;
+    readonly memoize = memoize;
+    readonly min = min;
+    readonly minBy = minBy;
+    readonly onErrorResumeNext = onErrorResumeNext;
+    readonly orderBy = orderBy;
+    readonly orderByDescending = orderByDescending;
+    readonly repeat = repeat;
+    readonly retry = retry;
+    readonly reverse = reverse;
+    readonly scan = scan;
+    readonly select = select;
+    readonly selectMany = selectMany;
+    readonly single = single;
+    readonly singleOrDefault = singleOrDefault;
+    readonly skip = skip;
+    readonly skipLast = skipLast;
+    readonly skipWhile = skipWhile;
+    readonly startWith = startWith;
+    readonly sum = sum;
+    readonly take = take;
+    readonly takeLast = takeLast;
+    readonly takeWhile = takeWhile;
+    readonly toArray = toArray;
+    readonly toLookup = toLookup;
+    readonly toMap = toMap;
+    readonly union = union;
+    readonly where = where;
+    readonly while = _while;
+    readonly zip = zip;
 }
