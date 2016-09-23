@@ -4,7 +4,7 @@ import skip from '../dist/skip';
 import take from '../dist/take';
 
 describe('take()', function() {
-    it('should return a specified number of contiguous elements from the start of a sequence', function() {
+    it('should returns a specified number of contiguous elements from the start of a sequence', function() {
         assert.deepEqual(Array.from([1, 2, 3, 4]::take(2)), [1, 2]);
         assert.deepEqual(Array.from([1, 2, 3, 4]::take(0)), []);
     });
