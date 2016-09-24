@@ -137,7 +137,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
         return defaultValue;
     }
 
-    lastPartition(minIndex: number, maxIndex: number): TElement {
+    lastInPartition(minIndex: number, maxIndex: number): TElement {
         const array = Array.from(this._source);
         const count = array.length;
         const comparer = this._getComparer();
@@ -159,7 +159,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
         return current;
     }
 
-    lastPartitionOrDefault(minIndex: number, maxIndex: number, defaultValue?: TElement): TElement {
+    lastInPartitionOrDefault(minIndex: number, maxIndex: number, defaultValue?: TElement): TElement {
         const array = Array.from(this._source);
         const count = array.length;
         const comparer = this._getComparer();

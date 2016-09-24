@@ -36,11 +36,11 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
     }
 
     last(): TElement {
-        return this._source.lastPartition(this._minIndex, this._maxIndex);
+        return this._source.lastInPartition(this._minIndex, this._maxIndex);
     }
 
     lastOrDefault(defaultValue?: TElement): TElement {
-        return this._source.lastPartitionOrDefault(this._minIndex, this._maxIndex, defaultValue);
+        return this._source.lastInPartitionOrDefault(this._minIndex, this._maxIndex, defaultValue);
     }
 
     elementAt(index: number): TElement {
