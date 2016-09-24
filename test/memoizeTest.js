@@ -1,8 +1,8 @@
 import assert from 'assert';
 import memoize from '../dist/memoize';
 
-describe('memoize()', function() {
-    it('should creates a buffer with a view over the source sequence', function() {
+describe('memoize()', () => {
+    it('should creates a buffer with a view over the source sequence', () => {
         let n = 0;
         const iterator = (function* () {
             for (let i = 0; i < 10; i++) yield n++

@@ -1,8 +1,8 @@
 import assert from 'assert';
 import join from '../dist/join';
 
-describe('join()', function() {
-    it('should correlates the elements of two sequences based on matching keys', function() {
+describe('join()', () => {
+    it('should correlates the elements of two sequences based on matching keys', () => {
         let xs = [0, 1, 2];
         let ys = [3, 6, 4];
         let result = xs::join(

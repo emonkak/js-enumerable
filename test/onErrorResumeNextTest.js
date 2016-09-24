@@ -2,8 +2,8 @@ import assert from 'assert';
 import onErrorResumeNext from '../dist/onErrorResumeNext';
 import sinon from 'sinon';
 
-describe('onErrorResumeNext()', function() {
-    it('should creates a sequence that concatenates both given sequences', function() {
+describe('onErrorResumeNext()', () => {
+    it('should creates a sequence that concatenates both given sequences', () => {
         const xs = {
             [Symbol.iterator]: function*() {
                 yield 1

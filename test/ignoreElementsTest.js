@@ -2,8 +2,8 @@ import assert from 'assert';
 import ignoreElements from '../dist/ignoreElements';
 import sinon from 'sinon';
 
-describe('ignoreElements()', function() {
-    it('should ignores all elements in the source sequence', function() {
+describe('ignoreElements()', () => {
+    it('should ignores all elements in the source sequence', () => {
         const iterator = sinon.spy(function*() {
             yield 1
             yield 2

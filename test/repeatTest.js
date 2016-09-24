@@ -1,8 +1,8 @@
 import assert from 'assert';
 import repeat from '../dist/repeat';
 
-describe('repeat()', function() {
-    it('should generates a sequence by repeating the given value.', function() {
+describe('repeat()', () => {
+    it('should generates a sequence by repeating the given value.', () => {
         const iterator1 = [1, 2, 3]::repeat()[Symbol.iterator]();
         assert.deepEqual(iterator1.next(), { done: false, value: 1 });
         assert.deepEqual(iterator1.next(), { done: false, value: 2 });

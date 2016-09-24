@@ -4,8 +4,8 @@ import orderBy from '../dist/orderBy';
 import skip from '../dist/skip';
 import take from '../dist/take';
 
-describe('elementAtOrDefault()', function() {
-    it('should returns the element at a specified index in a sequence', function() {
+describe('elementAtOrDefault()', () => {
+    it('should returns the element at a specified index in a sequence', () => {
         const xs = [1, 2, 3, 4];
 
         assert.strictEqual(xs::elementAtOrDefault(0), 1);
@@ -14,14 +14,14 @@ describe('elementAtOrDefault()', function() {
         assert.strictEqual(xs::elementAtOrDefault(3), 4);
     });
 
-    it('should returns a default value if the index is out of range', function() {
+    it('should returns a default value if the index is out of range', () => {
         const xs = [1, 2, 3, 4];
 
         assert.strictEqual(xs::elementAtOrDefault(4, 123), 123);
         assert.strictEqual(xs::elementAtOrDefault(4), null);
     });
 
-    it('should works with orderBy()', function() {
+    it('should works with orderBy()', () => {
         const xs = [3, 2, 4, 1];
 
         assert.strictEqual(xs::orderBy()::elementAtOrDefault(0), 1);

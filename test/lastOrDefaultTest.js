@@ -4,20 +4,20 @@ import orderBy from '../dist/orderBy';
 import skip from '../dist/skip';
 import take from '../dist/take';
 
-describe('lastOrDefault()', function() {
-    it('should returns the last element of a sequence', function() {
+describe('lastOrDefault()', () => {
+    it('should returns the last element of a sequence', () => {
         assert.strictEqual([1, 2, 3, 4]::lastOrDefault(), 4);
         assert.strictEqual([1, 2, 3, 4]::lastOrDefault(x => x % 2 === 1), 3);
     });
 
-    it('should returns null if the sequence contains no elements', function() {
+    it('should returns null if the sequence contains no elements', () => {
         assert.strictEqual([]::lastOrDefault(), null);
         assert.strictEqual([]::lastOrDefault(null, 123), 123);
         assert.strictEqual([1, 2, 3, 4]::lastOrDefault(x => x > 10), null);
         assert.strictEqual([1, 2, 3, 4]::lastOrDefault(x => x > 10, 123), 123);
     });
 
-    it('should works with orderBy()', function() {
+    it('should works with orderBy()', () => {
         const xs = [3, 2, 4, 1];
 
         assert.strictEqual(xs::orderBy()::lastOrDefault(), 4);

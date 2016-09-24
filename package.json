@@ -4,12 +4,13 @@
   "description": "Provides the individual methods of LINQ as a module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --declaration --rootDir src --outDir dist && cp LICENSE README.md package.json dist/",
+    "build": "tsc --declaration && cp LICENSE README.md package.json dist/",
     "clean": "rm -fr coverage dist",
-    "cover": "isparta cover --include-all-sources --report lcovonly --report html --report text ./node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register",
+    "coverage": "remap-istanbul -i coverage/coverage.json -t lcovonly -o coverage/lcov.info",
+    "coverage-html": "remap-istanbul -i coverage/coverage.json -t html -o coverage",
     "lint": "tslint src/**/*.ts",
-    "test": "mocha --compilers js:babel-core/register --recursive",
-    "watch": "tsc --watch --rootDir src --outDir dist"
+    "test": "babel-node ./node_modules/.bin/istanbul cover --include-all-sources _mocha --report none -- --compilers js:babel-core/register --recursive",
+    "watch": "tsc --watch"
   },
   "author": "Shota Nozaki",
   "license": "MIT",
@@ -19,16 +20,17 @@
   },
   "homepage": "https://github.com/emonkak/js-enumerable",
   "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-core": "^6.4.5",
-    "babel-plugin-transform-runtime": "^6.7.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-stage-0": "^6.3.13",
-    "babel-runtime": "^6.6.1",
     "cash-cp": "^0.2.0",
     "cash-rm": "^0.2.0",
     "coveralls": "^2.11.9",
-    "isparta": "^4.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.0.2",
+    "remap-istanbul": "^0.6.4",
     "sinon": "^1.17.3",
     "tslint": "^3.10.2",
     "typescript": "^2.0.3"

@@ -4,8 +4,8 @@ import orderBy from '../dist/orderBy';
 import skip from '../dist/skip';
 import take from '../dist/take';
 
-describe('elementAt()', function() {
-    it('should returns the element at a specified index in a sequence', function() {
+describe('elementAt()', () => {
+    it('should returns the element at a specified index in a sequence', () => {
         const xs = [1, 2, 3, 4];
 
         assert.strictEqual(xs::elementAt(0), 1);
@@ -14,13 +14,13 @@ describe('elementAt()', function() {
         assert.strictEqual(xs::elementAt(3), 4);
     });
 
-    it('should throws the exception if index is out of range', function() {
+    it('should throws the exception if index is out of range', () => {
         const xs = [1, 2, 3, 4];
 
         assert.throws(() => xs::elementAt(4));
     });
 
-    it('should works with orderBy()', function() {
+    it('should works with orderBy()', () => {
         const xs = [3, 2, 4, 1];
 
         assert.strictEqual(xs::orderBy()::elementAt(0), 1);

@@ -2,8 +2,8 @@ import _do from '../dist/do';
 import assert from 'assert';
 import sinon from 'sinon';
 
-describe('do()', function() {
-    it('should lazily invokes an action for each value in the sequence, and executes an action upon exceptional termination', function() {
+describe('do()', () => {
+    it('should lazily invokes an action for each value in the sequence, and executes an action upon exceptional termination', () => {
         const spy = sinon.spy();
         const result = [1, 2, 3, 4]::_do(spy);
         sinon.assert.notCalled(spy);

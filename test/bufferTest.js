@@ -1,8 +1,8 @@
 import assert from 'assert';
 import buffer from '../dist/buffer';
 
-describe('buffer()', function() {
-    it('should generates a sequence of non-overlapping adjacent buffers over the source sequence', function() {
+describe('buffer()', () => {
+    it('should generates a sequence of non-overlapping adjacent buffers over the source sequence', () => {
         const xs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         assert.deepEqual(Array.from(xs::buffer(3)), [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]);
         assert.deepEqual(Array.from(xs::buffer(5)), [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9]]);
@@ -11,7 +11,7 @@ describe('buffer()', function() {
         assert.deepEqual(Array.from(xs::buffer(3, 4)), [[0, 1, 2], [4, 5, 6], [8, 9]]);
     });
 
-    it('should throws the exception if "count" or "skip" arguments is less than or equal to 0', function() {
+    it('should throws the exception if "count" or "skip" arguments is less than or equal to 0', () => {
         assert.throws(() => Array.from([]::buffer(0)), RangeError);
         assert.throws(() => Array.from([]::buffer(1, 0)), RangeError);
         assert.throws(() => Array.from([]::buffer(0, 1)), RangeError);

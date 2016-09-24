@@ -1,8 +1,8 @@
 import _return from '../../dist/static/return';
 import assert from 'assert';
 
-describe('return()', function() {
-    it('should returns a sequence with a single element.', function() {
+describe('return()', () => {
+    it('should returns a sequence with a single element.', () => {
         assert.deepEqual(Array.from(_return(123)), [123]);
     });
 });

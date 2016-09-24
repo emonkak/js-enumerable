@@ -1,8 +1,8 @@
 import assert from 'assert';
 import defer from '../../dist/static/defer';
 
-describe('defer()', function() {
-    it('should creates an enumerable sequence based on an enumerable factory function', function() {
+describe('defer()', () => {
+    it('should creates an enumerable sequence based on an enumerable factory function', () => {
         let n = 5;
 
         const xs = {

@@ -1,8 +1,8 @@
 import _catch from '../../dist/static/catch';
 import assert from 'assert';
 
-describe('catch()', function() {
-    it('should creates a sequence by concatenating source sequences until a source sequence completes successfully', function() {
+describe('catch()', () => {
+    it('should creates a sequence by concatenating source sequences until a source sequence completes successfully', () => {
         const xs = {
             [Symbol.iterator]: function*() {
                 yield 1
@@ -16,7 +16,7 @@ describe('catch()', function() {
         assert.deepEqual(Array.from(_catch(xs, ys, zs)), [1, 2, 3, 4, 5, 6]);
     });
 
-    it('should throw the exception if an error continues to occur', function() {
+    it('should throw the exception if an error continues to occur', () => {
         const xs = {
             [Symbol.iterator]: function*() {
                 yield 1

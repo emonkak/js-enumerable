@@ -1,8 +1,8 @@
 import assert from 'assert';
 import toDictionary from '../dist/toDictionary';
 
-describe('toDictionary()', function() {
-    it('should creates a Map<T> from Iterable<T>', function() {
+describe('toDictionary()', () => {
+    it('should creates a Map<T> from Iterable<T>', () => {
         let result = []::toDictionary();
         assert(result instanceof Map);
         assert.deepEqual(Array.from(result), []);

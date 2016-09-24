@@ -1,8 +1,8 @@
 import assert from 'assert';
 import toLookup from '../dist/toLookup';
 
-describe('toLookup()', function() {
-    it('should creates a generic Map<TKey, TElement> from an Iterable<T>', function() {
+describe('toLookup()', () => {
+    it('should creates a generic Map<TKey, TElement> from an Iterable<T>', () => {
         let result = []::toLookup();
         assert(result instanceof Map);
         assert.deepEqual(Array.from(result), []);

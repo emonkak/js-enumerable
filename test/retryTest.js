@@ -1,8 +1,8 @@
 import assert from 'assert';
 import retry from '../dist/retry';
 
-describe('retry()', function() {
-    it('should creates a sequence that retries enumerating the source sequence as long as an error occurs.', function() {
+describe('retry()', () => {
+    it('should creates a sequence that retries enumerating the source sequence as long as an error occurs.', () => {
         assert.deepEqual(Array.from([1, 2, 3]::retry()), [1, 2, 3]);
         assert.deepEqual(Array.from([1, 2, 3]::retry(2)), [1, 2, 3]);
 

@@ -3,15 +3,14 @@ node_js:
   - '6'
   - '5'
   - '4'
-  - 'iojs'
 before_script:
   - $(npm bin)/tsc --version
 script:
   - npm run build
-  - npm test
   - npm run lint
+  - npm test
 after_success:
-  - npm run cover
+  - npm run coverage
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:

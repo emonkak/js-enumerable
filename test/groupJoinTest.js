@@ -1,8 +1,8 @@
 import assert from 'assert';
 import groupJoin from '../dist/groupJoin';
 
-describe('groupJoin()', function() {
-    it('should correlates the elements of two sequences based on equality of keys and groups the results', function() {
+describe('groupJoin()', () => {
+    it('should correlates the elements of two sequences based on equality of keys and groups the results', () => {
         let xs = [0, 1, 2];
         let ys = [4, 7, 6, 2, 3, 4, 8, 9];
         let result = xs::groupJoin(

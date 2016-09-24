@@ -4,18 +4,18 @@ import orderBy from '../dist/orderBy';
 import skip from '../dist/skip';
 import take from '../dist/take';
 
-describe('last()', function() {
-    it('should returns the last element of a sequence', function() {
+describe('last()', () => {
+    it('should returns the last element of a sequence', () => {
         assert.strictEqual([1, 2, 3, 4]::last(), 4);
         assert.strictEqual([1, 2, 3, 4]::last(x => x % 2 === 1), 3);
     });
 
-    it('should throws the exception if the sequence contains no elements', function() {
+    it('should throws the exception if the sequence contains no elements', () => {
         assert.throws(() => []::last());
         assert.throws(() => [1, 2, 3, 4]::last(x => x > 10));
     });
 
-    it('should works with orderBy()', function() {
+    it('should works with orderBy()', () => {
         const xs = [3, 2, 4, 1];
 
         assert.strictEqual(xs::orderBy()::last(), 4);

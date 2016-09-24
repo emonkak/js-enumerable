@@ -9,8 +9,8 @@ import range from '../../dist/static/range';
 import skip from '../../dist/skip';
 import take from '../../dist/take';
 
-describe('range()', function() {
-    it('should generates a sequence of integral numbers within a specified range', function() {
+describe('range()', () => {
+    it('should generates a sequence of integral numbers within a specified range', () => {
         assert.deepEqual(Array.from(range(1, 10)), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         assert.deepEqual(Array.from(range(1, 10)::take(5)), [1, 2, 3, 4, 5]);
         assert.deepEqual(Array.from(range(1, 10)::skip(5)), [6, 7, 8, 9, 10]);

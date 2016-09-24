@@ -2,8 +2,8 @@ import _finally from '../dist/finally';
 import assert from 'assert';
 import sinon from 'sinon';
 
-describe('finally()', function() {
-    it('should creates a sequence whose termination or disposal of an enumerator causes a finally action to be executed', function() {
+describe('finally()', () => {
+    it('should creates a sequence whose termination or disposal of an enumerator causes a finally action to be executed', () => {
         const source1 = [1, 2, 3];
         const finallyAction1 = sinon.spy();
         assert.deepEqual(Array.from(source1::_finally(finallyAction1)), [1, 2, 3]);

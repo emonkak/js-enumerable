@@ -1,8 +1,8 @@
 import assert from 'assert';
 import doWhile from '../dist/doWhile';
 
-describe('doWhile()', function() {
-    it('should generates an enumerable sequence by repeating a source sequence as long as the given loop postcondition holds', function() {
+describe('doWhile()', () => {
+    it('should generates an enumerable sequence by repeating a source sequence as long as the given loop postcondition holds', () => {
         let x = 0;
         const xs = {
             [Symbol.iterator]: function*() {

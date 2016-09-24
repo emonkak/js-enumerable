@@ -2,8 +2,8 @@ import _catch from '../dist/catch';
 import assert from 'assert';
 import sinon from 'sinon';
 
-describe('catch()', function() {
-    it('should creates a sequence that corresponds to the source sequence', function() {
+describe('catch()', () => {
+    it('should creates a sequence that corresponds to the source sequence', () => {
         const xs = [1, 2, 3];
         const ys = [4, 5, 6];
         const handler = sinon.spy(e => ys);
@@ -11,7 +11,7 @@ describe('catch()', function() {
         sinon.assert.notCalled(handler);
     });
 
-    it('should concatenate it with the sequence resulting from calling an exception handler function in case of an error', function() {
+    it('should concatenate it with the sequence resulting from calling an exception handler function in case of an error', () => {
         const xs = {
             [Symbol.iterator]: function*() {
                 yield 1

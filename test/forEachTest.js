@@ -1,8 +1,8 @@
 import forEach from '../dist/forEach';
 import sinon from 'sinon';
 
-describe('forEach()', function() {
-    it('should enumerates the sequence and invokes the given action for each value in the sequence', function() {
+describe('forEach()', () => {
+    it('should enumerates the sequence and invokes the given action for each value in the sequence', () => {
         const spy = sinon.spy();
         const xs = [1, 2, 3, 4];
         xs::forEach(e => spy(e));

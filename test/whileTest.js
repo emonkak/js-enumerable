@@ -1,8 +1,8 @@
 import _while from '../dist/while';
 import assert from 'assert';
 
-describe('while()', function() {
-    it('should generates an enumerable sequence by repeating a source sequence as long as the given loop condition holds', function() {
+describe('while()', () => {
+    it('should generates an enumerable sequence by repeating a source sequence as long as the given loop condition holds', () => {
         let x = 5;
         const xs = {
             [Symbol.iterator]: function*() {

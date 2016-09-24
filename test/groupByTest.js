@@ -1,8 +1,8 @@
 import assert from 'assert';
 import groupBy from '../dist/groupBy';
 
-describe('groupBy()', function() {
-    it('should groups the elements of a sequence according to a specified key selector function', function() {
+describe('groupBy()', () => {
+    it('should groups the elements of a sequence according to a specified key selector function', () => {
         let result = [1, 2, 3, 4]::groupBy(x => x % 2 === 0 ? 'even' : 'odd');
         assert.deepEqual(Array.from(result), [['odd', [1, 3]], ['even', [2, 4]]]);
 
