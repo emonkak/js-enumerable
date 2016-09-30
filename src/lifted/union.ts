@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import unionFn from '../union';
 
-export default function union<TSource>(this: IEnumerable<TSource>, second: Iterable<TSource>): IEnumerable<TSource> {
+export default function union<TSource>(this: Enumerable<TSource>, second: Iterable<TSource>): Enumerable<TSource> {
     return this.lift<TSource>(unionFn.call(this, second));
 }

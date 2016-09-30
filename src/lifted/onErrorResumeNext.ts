@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import onErrorResumeNextFn from '../onErrorResumeNext';
 
-export default function onErrorResumeNext<TSource>(this: IEnumerable<TSource>, ...sources: Iterable<TSource>[]): IEnumerable<TSource> {
+export default function onErrorResumeNext<TSource>(this: Enumerable<TSource>, ...sources: Iterable<TSource>[]): Enumerable<TSource> {
     return this.lift<TSource>(onErrorResumeNextFn.apply(this, sources));
 }

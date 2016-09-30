@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import skipLastFn from '../skipLast';
 
-export default function skipLast<TSource>(this: IEnumerable<TSource>, count: number): IEnumerable<TSource> {
+export default function skipLast<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
     return this.lift<TSource>(skipLastFn.call(this, count));
 }

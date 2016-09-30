@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import selectManyFn from '../selectMany';
 
-export default function selectMany<TSource, TResult>(this: IEnumerable<TSource>, collectionSelector: (element: TSource) => Iterable<TResult>): IEnumerable<TResult> {
+export default function selectMany<TSource, TResult>(this: Enumerable<TSource>, collectionSelector: (element: TSource) => Iterable<TResult>): Enumerable<TResult> {
     return this.lift<TResult>(selectManyFn.call(this, collectionSelector));
 }

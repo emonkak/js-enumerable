@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import intersectFn from '../intersect';
 
-export default function intersect<TSource>(this: IEnumerable<TSource>, second: Iterable<TSource>): IEnumerable<TSource> {
+export default function intersect<TSource>(this: Enumerable<TSource>, second: Iterable<TSource>): Enumerable<TSource> {
     return this.lift<TSource>(intersectFn.call(this, second));
 }

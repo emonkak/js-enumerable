@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import retryFn from '../retry';
 
-export default function retry<TSource>(this: IEnumerable<TSource>, retryCount?: number): IEnumerable<TSource> {
+export default function retry<TSource>(this: Enumerable<TSource>, retryCount?: number): Enumerable<TSource> {
     return this.lift<TSource>(retryFn.call(this, retryCount));
 }

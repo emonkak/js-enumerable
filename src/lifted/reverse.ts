@@ -1,6 +1,6 @@
-import IEnumerable from '../IEnumerable';
+import { Enumerable } from '../Enumerable';
 import reverseFn from '../reverse';
 
-export default function reverse<TSource>(this: IEnumerable<TSource>): IEnumerable<TSource> {
+export default function reverse<TSource>(this: Enumerable<TSource>): Enumerable<TSource> {
     return this.lift<TSource>(reverseFn.call(this));
 }
