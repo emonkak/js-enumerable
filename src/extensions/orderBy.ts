@@ -1,10 +1,12 @@
-import orderBy from '../lifted/orderBy';
-import { Enumerable } from '../Enumerable';
+import OrderedEnumerable from '../internal/OrderedEnumerable';
+import orderBy from '../orderBy';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.orderBy = orderBy;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        orderBy: typeof orderBy;
+        orderBy(): OrderedEnumerable<TSource, TSource>;
+        orderBy<TKey>(keySelector?: (value: TSource) => TKey): OrderedEnumerable<TSource, TKey>;
     }
 }

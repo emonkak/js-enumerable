@@ -1,10 +1,14 @@
-import staticRange from '../../lifted/static/range';
-import { Enumerable } from '../../Enumerable';
+import rangeFn from '../../static/range';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable.range = staticRange;
+function range(start: number, count: number): Enumerable<number> {
+    return new Enumerable(rangeFn(start, count));
+}
 
-declare module '../../Enumerable' {
+Enumerable.range = range;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let range: typeof staticRange;
+        export function range(start: number, count: number): Enumerable<number>;
     }
 }

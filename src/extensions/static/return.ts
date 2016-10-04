@@ -1,10 +1,14 @@
-import staticReturn from '../../lifted/static/return';
-import { Enumerable } from '../../Enumerable';
+import returnFn from '../../static/return';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable._return = staticReturn;
+function _return<TSource>(element: TSource): Enumerable<TSource> {
+    return new Enumerable(returnFn(element));
+}
 
-declare module '../../Enumerable' {
+Enumerable._return = _return;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let _return: typeof staticReturn;
+        export function _return<TSource>(element: TSource): Enumerable<TSource>;
     }
 }

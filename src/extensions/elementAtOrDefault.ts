@@ -1,10 +1,10 @@
 import elementAtOrDefault from '../elementAtOrDefault';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.elementAtOrDefault = elementAtOrDefault;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        elementAtOrDefault: typeof elementAtOrDefault;
+        elementAtOrDefault(index: number, defaultValue?: TSource): TSource;
     }
 }

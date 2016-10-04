@@ -3,14 +3,15 @@ import OrderedPartition from './OrderedPartition';
 import Partition from './Partition';
 import partialQuickSort from './partialQuickSort';
 import quickSelect from './quickSelect';
+import { Enumerable } from './Enumerable';
 import { noElements } from './errors';
 
-export default class OrderedEnumerable<TElement, TKey> extends Partition<TElement> {
-    constructor(private _source: Iterable<TElement>,
+export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TElement> {
+    constructor(_source: Iterable<TElement>,
                 private _keySelector: (value: TElement) => TKey,
                 private _descending: boolean,
                 private _parent?: OrderedEnumerable<TElement, any>) {
-        super();
+        super(_source);
     }
 
     [Symbol.iterator](): Iterator<TElement> {
@@ -25,20 +26,48 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
         return new OrderedEnumerable(this._source, keySelector, true, this);
     }
 
-    take(count: number): Partition<TElement> {
-        return new OrderedPartition(this, 0, count - 1);
+    take(count: number): Enumerable<TElement> {
+        return new Enumerable(new OrderedPartition(this, 0, count - 1));
     }
 
-    skip(count: number): Partition<TElement> {
-        return new OrderedPartition(this, count, Number.MAX_VALUE);
+    skip(count: number): Enumerable<TElement> {
+        return new Enumerable(new OrderedPartition(this, count, Number.MAX_VALUE));
     }
 
-    first(): TElement {
+    first(predicate?: (element: TElement) => boolean): TElement {
         const iterator = this._source[Symbol.iterator]();
 
-        let result = iterator.next();
+        if (predicate) {
+            let result: IteratorResult<TElement>;
 
-        if (!result.done) {
+            do {
+                result = iterator.next();
+                if (result.done) {
+                    throw noElements();
+                }
+            } while (!predicate(result.value));
+
+            const comparer = this._getComparer();
+
+            let value = result.value;
+
+            result = iterator.next();
+
+            while (!result.done) {
+                if (predicate(result.value) && comparer(result.value, value) < 0) {
+                    value = result.value;
+                }
+                result = iterator.next();
+            }
+
+            return value;
+        } else {
+            let result = iterator.next();
+
+            if (result.done) {
+                throw noElements();
+            }
+
             const comparer = this._getComparer();
 
             let value = result.value;
@@ -49,22 +78,47 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
                 if (comparer(result.value, value) < 0) {
                     value = result.value;
                 }
-
                 result = iterator.next();
             }
 
             return value;
         }
-
-        throw noElements();
     }
 
-    firstOrDefault(defaultValue?: TElement): TElement {
+    firstOrDefault(predicate?: (element: TElement) => boolean, defaultValue: TElement = null): TElement {
         const iterator = this._source[Symbol.iterator]();
 
-        let result = iterator.next();
+        if (predicate) {
+            let result: IteratorResult<TElement>;
 
-        if (!result.done) {
+            do {
+                result = iterator.next();
+                if (result.done) {
+                    return defaultValue;
+                }
+            } while (!predicate(result.value));
+
+            const comparer = this._getComparer();
+
+            let value = result.value;
+
+            result = iterator.next();
+
+            while (!result.done) {
+                if (predicate(result.value) && comparer(result.value, value) < 0) {
+                    value = result.value;
+                }
+                result = iterator.next();
+            }
+
+            return value;
+        } else {
+            let result = iterator.next();
+
+            if (result.done) {
+                return defaultValue;
+            }
+
             const comparer = this._getComparer();
 
             let value = result.value;
@@ -75,22 +129,47 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
                 if (comparer(result.value, value) < 0) {
                     value = result.value;
                 }
-
                 result = iterator.next();
             }
 
             return value;
         }
-
-        return defaultValue;
     }
 
-    last(): TElement {
+    last(predicate?: (element: TElement) => boolean): TElement {
         const iterator = this._source[Symbol.iterator]();
 
-        let result = iterator.next();
+        if (predicate) {
+            let result: IteratorResult<TElement>;
 
-        if (!result.done) {
+            do {
+                result = iterator.next();
+                if (result.done) {
+                    throw noElements();
+                }
+            } while (!predicate(result.value));
+
+            const comparer = this._getComparer();
+
+            let value = result.value;
+
+            result = iterator.next();
+
+            while (!result.done) {
+                if (predicate(result.value) && comparer(result.value, value) > 0) {
+                    value = result.value;
+                }
+                result = iterator.next();
+            }
+
+            return value;
+        } else {
+            let result = iterator.next();
+
+            if (result.done) {
+                throw noElements();
+            }
+
             const comparer = this._getComparer();
 
             let value = result.value;
@@ -101,22 +180,47 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
                 if (comparer(result.value, value) > 0) {
                     value = result.value;
                 }
-
                 result = iterator.next();
             }
 
             return value;
         }
-
-        throw noElements();
     }
 
-    lastOrDefault(defaultValue?: TElement): TElement {
+    lastOrDefault(predicate?: (element: TElement) => boolean, defaultValue: TElement = null): TElement {
         const iterator = this._source[Symbol.iterator]();
 
-        let result = iterator.next();
+        if (predicate) {
+            let result: IteratorResult<TElement>;
 
-        if (!result.done) {
+            do {
+                result = iterator.next();
+                if (result.done) {
+                    return defaultValue;
+                }
+            } while (!predicate(result.value));
+
+            const comparer = this._getComparer();
+
+            let value = result.value;
+
+            result = iterator.next();
+
+            while (!result.done) {
+                if (predicate(result.value) && comparer(result.value, value) > 0) {
+                    value = result.value;
+                }
+                result = iterator.next();
+            }
+
+            return value;
+        } else {
+            let result = iterator.next();
+
+            if (result.done) {
+                return defaultValue;
+            }
+
             const comparer = this._getComparer();
 
             let value = result.value;
@@ -127,14 +231,11 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
                 if (comparer(result.value, value) > 0) {
                     value = result.value;
                 }
-
                 result = iterator.next();
             }
 
             return value;
         }
-
-        return defaultValue;
     }
 
     lastInPartition(minIndex: number, maxIndex: number): TElement {
@@ -159,7 +260,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
         return current;
     }
 
-    lastInPartitionOrDefault(minIndex: number, maxIndex: number, defaultValue?: TElement): TElement {
+    lastInPartitionOrDefault(minIndex: number, maxIndex: number, defaultValue: TElement = null): TElement {
         const array = Array.from(this._source);
         const count = array.length;
         const comparer = this._getComparer();
@@ -190,8 +291,8 @@ export default class OrderedEnumerable<TElement, TKey> extends Partition<TElemen
         return quickSelect(array, comparer, 0, count - 1, index);
     }
 
-    elementAtOrDefault(index: number, defaultValue?: TElement): TElement {
-        if (index === 0) return this.firstOrDefault(defaultValue);
+    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
+        if (index === 0) return this.firstOrDefault(null, defaultValue);
         const array = Array.from(this._source);
         const count = array.length;
         if (index > count - 1) return defaultValue;

@@ -1,10 +1,10 @@
 import minBy from '../minBy';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.minBy = minBy;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        minBy: typeof minBy;
+        minBy<TKey>(keySelector?: (element: TSource) => TKey): TSource[];
     }
 }

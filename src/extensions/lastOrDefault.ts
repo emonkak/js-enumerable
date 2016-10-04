@@ -1,10 +1,10 @@
 import lastOrDefault from '../lastOrDefault';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.lastOrDefault = lastOrDefault;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        lastOrDefault: typeof lastOrDefault;
+        lastOrDefault(predicate?: (value: TSource) => boolean, defaultValue?: TSource): TSource;
     }
 }

@@ -1,10 +1,14 @@
-import select from '../lifted/select';
-import { Enumerable } from '../Enumerable';
+import selectFn from '../select';
+import { Enumerable } from '../internal/Enumerable';
+
+function select<TSource, TResult>(this: Enumerable<TSource>, selector: (element: TSource) => TResult): Enumerable<TResult> {
+    return this.lift<TResult>(selectFn.call(this, selector));
+}
 
 Enumerable.prototype.select = select;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        select: typeof select;
+        select<TResult>(selector: (element: TSource) => TResult): Enumerable<TResult>;
     }
 }

@@ -1,10 +1,10 @@
 import last from '../last';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.last = last;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        last: typeof last;
+        last(predicate?: (value: TSource) => boolean): TSource;
     }
 }

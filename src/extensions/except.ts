@@ -1,10 +1,14 @@
-import except from '../except';
-import { Enumerable } from '../Enumerable';
+import exceptFn from '../except';
+import { Enumerable } from '../internal/Enumerable';
+
+function except<TSource>(this: Enumerable<TSource>, second: Iterable<TSource>): Enumerable<TSource> {
+    return this.lift<TSource>(exceptFn.call(this, second));
+}
 
 Enumerable.prototype.except = except;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        except: typeof except;
+        except(second: Iterable<TSource>): Enumerable<TSource>;
     }
 }

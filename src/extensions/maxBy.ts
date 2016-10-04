@@ -1,10 +1,10 @@
 import maxBy from '../maxBy';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.maxBy = maxBy;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        maxBy: typeof maxBy;
+        maxBy<TKey>(keySelector?: (element: TSource) => TKey): TSource[];
     }
 }

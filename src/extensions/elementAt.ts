@@ -1,10 +1,10 @@
 import elementAt from '../elementAt';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.elementAt = elementAt;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        elementAt: typeof elementAt;
+        elementAt(index: number): TSource;
     }
 }

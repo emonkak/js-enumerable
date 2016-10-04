@@ -1,10 +1,14 @@
-import _finally from '../finally';
-import { Enumerable } from '../Enumerable';
+import finallyFn from '../finally';
+import { Enumerable } from '../internal/Enumerable';
+
+function _finally<TSource>(this: Enumerable<TSource>, finallyAction: () => void): Enumerable<TSource> {
+    return this.lift<TSource>(finallyFn.call(this, finallyAction));
+}
 
 Enumerable.prototype.finally = _finally;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        finally: typeof _finally;
+        finally(finallyAction: () => void): Enumerable<TSource>;
     }
 }

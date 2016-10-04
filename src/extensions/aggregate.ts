@@ -1,10 +1,10 @@
 import aggregate from '../aggregate';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.aggregate = aggregate;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        aggregate: typeof aggregate;
+        aggregate<TAccumulate>(seed: TAccumulate, func: (result: TAccumulate, element: TSource) => TAccumulate): TAccumulate;
     }
 }

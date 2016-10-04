@@ -1,10 +1,14 @@
-import staticIf from '../../lifted/static/if';
-import { Enumerable } from '../../Enumerable';
+import ifFn from '../../static/if';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable._if = staticIf;
+function _if<TResult>(condition: () => boolean, thenSource: Iterable<TResult>, elseSource: Iterable<TResult>): Enumerable<TResult> {
+    return new Enumerable(ifFn(condition, thenSource, elseSource));
+}
 
-declare module '../../Enumerable' {
+Enumerable._if = _if;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let _if: typeof staticIf;
+        export function _if<TResult>(condition: () => boolean, thenSource: Iterable<TResult>, elseSource: Iterable<TResult>): Enumerable<TResult>;
     }
 }

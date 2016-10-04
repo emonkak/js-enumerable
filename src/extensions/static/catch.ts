@@ -1,10 +1,14 @@
-import staticCatch from '../../lifted/static/catch';
-import { Enumerable } from '../../Enumerable';
+import catchFn from '../../static/catch';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable._catch = staticCatch;
+function _catch<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource> {
+    return new Enumerable(catchFn(...sources));
+}
 
-declare module '../../Enumerable' {
+Enumerable._catch = _catch;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let _catch: typeof staticCatch;
+        export function _catch<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource>;
     }
 }

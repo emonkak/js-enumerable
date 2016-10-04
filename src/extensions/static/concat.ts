@@ -1,10 +1,14 @@
-import staticConcat from '../../lifted/static/concat';
-import { Enumerable } from '../../Enumerable';
+import concatFn from '../../static/concat';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable.concat = staticConcat;
+function concat<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource> {
+    return new Enumerable(concatFn(...sources));
+}
 
-declare module '../../Enumerable' {
+Enumerable.concat = concat;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let concat: typeof staticConcat;
+        export function concat<TSource>(...sources: Iterable<TSource>[]): Enumerable<TSource>;
     }
 }

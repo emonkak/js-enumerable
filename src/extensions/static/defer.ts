@@ -1,10 +1,14 @@
-import staticDefer from '../../lifted/static/defer';
-import { Enumerable } from '../../Enumerable';
+import deferFn from '../../static/defer';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable.defer = staticDefer;
+function defer<TSource>(iterableFactory: () => Iterable<TSource>): Enumerable<TSource> {
+    return new Enumerable(deferFn(iterableFactory));
+}
 
-declare module '../../Enumerable' {
+Enumerable.defer = defer;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let defer: typeof staticDefer;
+        export function defer<TSource>(iterableFactory: () => Iterable<TSource>): Enumerable<TSource>;
     }
 }

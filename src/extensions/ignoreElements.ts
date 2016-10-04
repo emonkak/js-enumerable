@@ -1,10 +1,14 @@
-import ignoreElements from '../lifted/ignoreElements';
-import { Enumerable } from '../Enumerable';
+import ignoreElementsFn from '../ignoreElements';
+import { Enumerable } from '../internal/Enumerable';
+
+function ignoreElements<TSource>(this: Enumerable<TSource>): Enumerable<TSource> {
+    return this.lift<TSource>(ignoreElementsFn.call(this));
+}
 
 Enumerable.prototype.ignoreElements = ignoreElements;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        ignoreElements: typeof ignoreElements;
+        ignoreElements(): Enumerable<TSource>;
     }
 }

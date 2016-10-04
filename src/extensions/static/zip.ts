@@ -1,10 +1,14 @@
-import staticZip from '../../lifted/static/zip';
-import { Enumerable } from '../../Enumerable';
+import zipFn from '../../static/zip';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable.zip = staticZip;
+function zip<TFirst, TSecond, TResult>(first: Iterable<TFirst>, second: Iterable<TSecond>, resultSelector: (first: TFirst, second: TSecond) => TResult): Enumerable<TResult> {
+    return new Enumerable(zipFn(first, second, resultSelector));
+}
 
-declare module '../../Enumerable' {
+Enumerable.zip = zip;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let zip: typeof staticZip;
+        export function zip<TFirst, TSecond, TResult>(first: Iterable<TFirst>, second: Iterable<TSecond>, resultSelector: (first: TFirst, second: TSecond) => TResult): Enumerable<TResult>;
     }
 }

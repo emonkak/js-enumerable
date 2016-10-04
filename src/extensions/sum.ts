@@ -1,10 +1,10 @@
 import sum from '../sum';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.sum = sum;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        sum: typeof sum;
+        sum(selector?: (element: TSource) => number): number;
     }
 }

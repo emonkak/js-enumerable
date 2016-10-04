@@ -1,10 +1,14 @@
-import zip from '../lifted/zip';
-import { Enumerable } from '../Enumerable';
+import zipFn from '../zip';
+import { Enumerable } from '../internal/Enumerable';
+
+function zip<TFirst, TSecond, TResult>(this: Enumerable<TFirst>, second: Iterable<TSecond>, resultSelector: (first: TFirst, second: TSecond) => TResult): Enumerable<TResult> {
+    return this.lift<TResult>(zipFn.call(this, second, resultSelector));
+}
 
 Enumerable.prototype.zip = zip;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        zip: typeof zip;
+        zip<TSecond, TResult>(second: Iterable<TSecond>, resultSelector: (first: TSource, second: TSecond) => TResult): Enumerable<TResult>;
     }
 }

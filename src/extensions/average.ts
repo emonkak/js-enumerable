@@ -1,10 +1,10 @@
 import average from '../average';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.average = average;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        average: typeof average;
+        average(selector?: (element: TSource) => number): number;
     }
 }

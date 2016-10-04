@@ -26,7 +26,7 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
         throw noElements();
     }
 
-    firstOrDefault(defaultValue?: TElement): TElement {
+    firstOrDefault(defaultValue: TElement = null): TElement {
         return defaultValue;
     }
 
@@ -34,7 +34,7 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
         throw noElements();
     }
 
-    lastOrDefault(defaultValue?: TElement): TElement {
+    lastOrDefault(defaultValue: TElement = null): TElement {
         return defaultValue;
     }
 
@@ -42,7 +42,7 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
         throw noElements();
     }
 
-    elementAtOrDefault(index: number, defaultValue?: TElement): TElement {
+    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
         return defaultValue;
     }
 }

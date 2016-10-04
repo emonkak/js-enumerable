@@ -10,7 +10,7 @@ script:
   - npm run lint
   - npm test
 after_success:
-  - npm run coverage
+  - npm run cover
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:

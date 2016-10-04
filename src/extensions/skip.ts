@@ -1,10 +1,14 @@
-import skip from '../lifted/skip';
-import { Enumerable } from '../Enumerable';
+import skipFn from '../skip';
+import { Enumerable } from '../internal/Enumerable';
+
+function skip<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
+    return this.lift<TSource>(skipFn.call(this, count));
+}
 
 Enumerable.prototype.skip = skip;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        skip: typeof skip;
+        skip(count: number): Enumerable<TSource>;
     }
 }

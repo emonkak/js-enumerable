@@ -1,10 +1,14 @@
-import staticRepeat from '../../lifted/static/repeat';
-import { Enumerable } from '../../Enumerable';
+import repeatFn from '../../static/repeat';
+import { Enumerable } from '../../internal/Enumerable';
 
-Enumerable.repeat = staticRepeat;
+function repeat<TSource>(element: TSource, count?: number): Enumerable<TSource> {
+    return new Enumerable(repeatFn(element, count));
+}
 
-declare module '../../Enumerable' {
+Enumerable.repeat = repeat;
+
+declare module '../../internal/Enumerable' {
     namespace Enumerable {
-        export let repeat: typeof staticRepeat;
+        export function repeat<TSource>(element: TSource, count?: number): Enumerable<TSource>;
     }
 }

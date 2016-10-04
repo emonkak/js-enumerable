@@ -1,10 +1,10 @@
 import all from '../all';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.all = all;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        all: typeof all;
+        all(predicate?: (element: TSource) => boolean): boolean;
     }
 }

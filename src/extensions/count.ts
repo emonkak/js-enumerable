@@ -1,10 +1,10 @@
 import count from '../count';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.count = count;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        count: typeof count;
+        count(predicate?: (item: TSource) => boolean): number;
     }
 }

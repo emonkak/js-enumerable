@@ -27,10 +27,6 @@ class RangePartition extends Partition<number> {
         } while (current < end);
     }
 
-    get length(): number {
-        return this._end - this._start;
-    }
-
     skip(count: number): Partition<number> {
         if (count >= this._end - this._start) return new EmptyPartition<number>();
         return new RangePartition(this._start + count, this._end - this._start - count);

@@ -1,10 +1,14 @@
-import groupJoin from '../lifted/groupJoin';
-import { Enumerable } from '../Enumerable';
+import groupJoinFn from '../groupJoin';
+import { Enumerable } from '../internal/Enumerable';
+
+function groupJoin<TOuter, TInner, TKey, TResult>(this: Enumerable<TOuter>, inner: Iterable<TInner>, outerKeySelector: (element: TOuter) => TKey, innerKeySelector: (element: TInner) => TKey, resultSelector: (outer: TOuter, inner: TInner[]) => TResult): Enumerable<TResult> {
+    return this.lift<TResult>(groupJoinFn.call(this, inner, outerKeySelector, innerKeySelector, resultSelector));
+}
 
 Enumerable.prototype.groupJoin = groupJoin;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        groupJoin: typeof groupJoin;
+        groupJoin<TInner, TKey, TResult>(inner: Iterable<TInner>, outerKeySelector: (element: TSource) => TKey, innerKeySelector: (element: TInner) => TKey, resultSelector: (outer: TSource, inner: TInner[]) => TResult): Enumerable<TResult>;
     }
 }

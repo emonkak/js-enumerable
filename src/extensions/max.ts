@@ -1,10 +1,10 @@
 import max from '../max';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.max = max;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        max: typeof max;
+        max(selector?: (element: TSource) => number): number;
     }
 }

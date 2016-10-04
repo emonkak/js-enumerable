@@ -1,4 +1,4 @@
-export default function maxBy<TSource, TKey>(this: Iterable<TSource>, keySelector: (element: TSource) => TKey): TSource[] {
+export default function maxBy<TSource, TKey>(this: Iterable<TSource>, keySelector?: (element: TSource) => TKey): TSource[] {
     const iterator = this[Symbol.iterator]() as Iterator<TSource>;
 
     let result: TSource[] = [];

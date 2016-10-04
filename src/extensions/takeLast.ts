@@ -1,10 +1,14 @@
-import takeLast from '../lifted/takeLast';
-import { Enumerable } from '../Enumerable';
+import takeLastFn from '../takeLast';
+import { Enumerable } from '../internal/Enumerable';
+
+function takeLast<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
+    return this.lift<TSource>(takeLastFn.call(this, count));
+}
 
 Enumerable.prototype.takeLast = takeLast;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        takeLast: typeof takeLast;
+        takeLast(count: number): Enumerable<TSource>;
     }
 }

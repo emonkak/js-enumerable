@@ -1,10 +1,10 @@
 import single from '../single';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.single = single;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        single: typeof single;
+        single(predicate?: (element: TSource) => boolean): TSource;
     }
 }

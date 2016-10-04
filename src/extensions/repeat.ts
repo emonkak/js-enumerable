@@ -1,10 +1,14 @@
-import repeat from '../lifted/repeat';
-import { Enumerable } from '../Enumerable';
+import repeatFn from '../repeat';
+import { Enumerable } from '../internal/Enumerable';
+
+function repeat<TSource>(this: Enumerable<TSource>, count?: number): Enumerable<TSource> {
+    return this.lift<TSource>(repeatFn.call(this, count));
+}
 
 Enumerable.prototype.repeat = repeat;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        repeat: typeof repeat;
+        repeat(count?: number): Enumerable<TSource>;
     }
 }

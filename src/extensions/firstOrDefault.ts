@@ -1,10 +1,10 @@
 import firstOrDefault from '../firstOrDefault';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.firstOrDefault = firstOrDefault;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        firstOrDefault: typeof firstOrDefault;
+        firstOrDefault(predicate?: (element: TSource) => boolean, defaultValue?: TSource): TSource;
     }
 }

@@ -1,10 +1,10 @@
 import isEmpty from '../isEmpty';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.isEmpty = isEmpty;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        isEmpty: typeof isEmpty;
+        isEmpty(): boolean;
     }
 }

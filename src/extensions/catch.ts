@@ -1,10 +1,14 @@
-import _catch from '../lifted/catch';
-import { Enumerable } from '../Enumerable';
+import catchFn from '../catch';
+import { Enumerable } from '../internal/Enumerable';
+
+function _catch<TSource, TException>(this: Enumerable<TSource>, handler: (exception: TException) => Iterable<TSource>): Enumerable<TSource> {
+    return this.lift<TSource>(catchFn.call(this, handler));
+}
 
 Enumerable.prototype.catch = _catch;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        catch: typeof _catch;
+        catch<TException>(handler: (exception: TException) => Iterable<TSource>): Enumerable<TSource>;
     }
 }

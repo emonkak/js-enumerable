@@ -1,10 +1,10 @@
 import min from '../min';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.min = min;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        min: typeof min;
+        min(selector?: (element: TSource) => number): number;
     }
 }

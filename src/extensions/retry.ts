@@ -1,10 +1,14 @@
-import retry from '../lifted/retry';
-import { Enumerable } from '../Enumerable';
+import retryFn from '../retry';
+import { Enumerable } from '../internal/Enumerable';
+
+function retry<TSource>(this: Enumerable<TSource>, retryCount?: number): Enumerable<TSource> {
+    return this.lift<TSource>(retryFn.call(this, retryCount));
+}
 
 Enumerable.prototype.retry = retry;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        retry: typeof retry;
+        retry(retryCount?: number): Enumerable<TSource>;
     }
 }

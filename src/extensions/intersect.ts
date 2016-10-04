@@ -1,10 +1,14 @@
-import intersect from '../lifted/intersect';
-import { Enumerable } from '../Enumerable';
+import intersectFn from '../intersect';
+import { Enumerable } from '../internal/Enumerable';
+
+function intersect<TSource>(this: Enumerable<TSource>, second: Iterable<TSource>): Enumerable<TSource> {
+    return this.lift<TSource>(intersectFn.call(this, second));
+}
 
 Enumerable.prototype.intersect = intersect;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        intersect: typeof intersect;
+        intersect(second: Iterable<TSource>): Enumerable<TSource>;
     }
 }

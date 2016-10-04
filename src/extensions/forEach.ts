@@ -1,10 +1,10 @@
 import forEach from '../forEach';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.forEach = forEach;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        forEach: typeof forEach;
+        forEach(action: (element: TSource) => void): void;
     }
 }

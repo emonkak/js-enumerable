@@ -1,10 +1,14 @@
-import buffer from '../lifted/buffer';
-import { Enumerable } from '../Enumerable';
+import bufferFn from '../buffer';
+import { Enumerable } from '../internal/Enumerable';
+
+function buffer<TSource>(this: Enumerable<TSource>, count: number, skip?: number): Enumerable<TSource[]> {
+    return this.lift<TSource[]>(bufferFn.call(this, count, skip));
+}
 
 Enumerable.prototype.buffer = buffer;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        buffer: typeof buffer;
+        buffer(count: number, skip?: number): Enumerable<TSource[]>;
     }
 }

@@ -31,7 +31,7 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
         return this._source.elementAt(this._minIndex);
     }
 
-    firstOrDefault(defaultValue?: TElement): TElement {
+    firstOrDefault(defaultValue: TElement = null): TElement {
         return this._source.elementAtOrDefault(this._minIndex, defaultValue);
     }
 
@@ -39,7 +39,7 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
         return this._source.lastInPartition(this._minIndex, this._maxIndex);
     }
 
-    lastOrDefault(defaultValue?: TElement): TElement {
+    lastOrDefault(defaultValue: TElement = null): TElement {
         return this._source.lastInPartitionOrDefault(this._minIndex, this._maxIndex, defaultValue);
     }
 
@@ -50,7 +50,7 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
         return this._source.elementAt(index + this._minIndex);
     }
 
-    elementAtOrDefault(index: number, defaultValue?: TElement): TElement {
+    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
         if (index > this._maxIndex - this._minIndex) {
             return defaultValue;
         }

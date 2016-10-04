@@ -1,10 +1,14 @@
-import _do from '../lifted/do';
-import { Enumerable } from '../Enumerable';
+import doFn from '../do';
+import { Enumerable } from '../internal/Enumerable';
+
+function _do<TSource>(this: Enumerable<TSource>, action: (element: TSource) => void): Enumerable<TSource> {
+    return this.lift<TSource>(doFn.call(this, action));
+}
 
 Enumerable.prototype.do = _do;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        do: typeof _do;
+        do(action: (element: TSource) => void): Enumerable<TSource>;
     }
 }

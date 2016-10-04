@@ -1,10 +1,10 @@
 import toArray from '../toArray';
-import { Enumerable } from '../Enumerable';
+import { Enumerable } from '../internal/Enumerable';
 
 Enumerable.prototype.toArray = toArray;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        toArray: typeof toArray;
+        toArray(): TSource[];
     }
 }

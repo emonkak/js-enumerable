@@ -1,10 +1,14 @@
-import defaultIfEmpty from '../lifted/defaultIfEmpty';
-import { Enumerable } from '../Enumerable';
+import defaultIfEmptyFn from '../defaultIfEmpty';
+import { Enumerable } from '../internal/Enumerable';
+
+function defaultIfEmpty<TSource>(this: Enumerable<TSource>, defaultValue: TSource): Enumerable<TSource> {
+    return this.lift<TSource>(defaultIfEmptyFn.call(this, defaultValue));
+}
 
 Enumerable.prototype.defaultIfEmpty = defaultIfEmpty;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        defaultIfEmpty: typeof defaultIfEmpty;
+        defaultIfEmpty(defaultValue: TSource): Enumerable<TSource>;
     }
 }

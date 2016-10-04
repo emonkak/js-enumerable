@@ -1,12 +1,3 @@
-export class Enumerable<TSource> implements Iterable<TSource> {
-    constructor(private _source: Iterable<TSource>) {
-    }
+import { Enumerable } from './internal/Enumerable';
 
-    [Symbol.iterator](): Iterator<TSource> {
-        return this._source[Symbol.iterator]();
-    }
-
-    lift<TResult>(source: Iterable<TResult>): Enumerable<TResult> {
-        return new Enumerable(source);
-    }
-}
+export default Enumerable;

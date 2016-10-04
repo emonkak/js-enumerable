@@ -1,10 +1,14 @@
-import selectMany from '../lifted/selectMany';
-import { Enumerable } from '../Enumerable';
+import selectManyFn from '../selectMany';
+import { Enumerable } from '../internal/Enumerable';
+
+function selectMany<TSource, TResult>(this: Enumerable<TSource>, collectionSelector: (element: TSource) => Iterable<TResult>): Enumerable<TResult> {
+    return this.lift<TResult>(selectManyFn.call(this, collectionSelector));
+}
 
 Enumerable.prototype.selectMany = selectMany;
 
-declare module '../Enumerable' {
+declare module '../internal/Enumerable' {
     interface Enumerable<TSource> {
-        selectMany: typeof selectMany;
+        selectMany<TResult>(collectionSelector: (element: TSource) => Iterable<TResult>): Enumerable<TResult>;
     }
 }
