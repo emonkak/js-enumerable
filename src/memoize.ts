@@ -1,43 +1,28 @@
 export default function memoize<TSource>(this: Iterable<TSource>): Iterable<TSource> {
-    return new MemoizeIterator(this[Symbol.iterator]() as Iterator<TSource>);
-}
+    let buffer: TSource[] = [];
+    let iterator = this[Symbol.iterator]();
 
-class MemoizeIterator<TElement> implements Iterable<TElement> {
-    private _buffer: TElement[] = [];
+    return {
+        *[Symbol.iterator]() {
+            yield* buffer;
 
-    private _bufferSize: number = 0;
-
-    private _error: any;
-
-    constructor(private _iterator: Iterator<TElement>) {
-    }
-
-    *[Symbol.iterator](): Iterator<TElement> {
-        let index = 0;
-        while (true) {
-            if (index < this._bufferSize) {
-                yield this._buffer[index];
-            } else {
-                if (this._iterator != null) {
-                    let result: IteratorResult<TElement>;
+            if (iterator != null) {
+                while (true) {
+                    let result: IteratorResult<TSource>;
                     try {
-                        result = this._iterator.next();
+                        result = iterator.next();
                     } catch (e) {
-                        this._error = e;
+                        iterator = null;
                         throw e;
                     }
                     if (result.done) {
-                        this._iterator = null;
+                        iterator = null;
                         break;
                     }
-                    this._bufferSize = this._buffer.push(result.value);
+                    buffer.push(result.value);
                     yield result.value;
-                } else {
-                    if (this._error) throw this._error;
-                    break;
                 }
             }
-            index++;
         }
     }
 }

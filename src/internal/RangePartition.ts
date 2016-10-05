@@ -13,10 +13,6 @@ export default class RangePartition extends Partition<number> {
         this._end = start + count;
     }
 
-    get length(): number {
-        return this._end - this._start;
-    }
-
     *[Symbol.iterator](): Iterator<number> {
         let current = this._start;
         let end = this._end;

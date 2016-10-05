@@ -1,18 +1,51 @@
-import pivotPosition from './pivotPosition';
+export default function quickSelect<T>(array: Array<T>, comparer: (first: T, second: T) => number, left: number, right: number, index: number): T {
+    do {
+        let i = left;
+        let j = right;
+        let x = array[i + ((j - i) >> 1)];
+        do {
+            while (i < array.length && comparer(x, array[i]) > 0) {
+                i++;
+            }
 
-export default function quickSelect<T>(array: Array<T>, comparer: (first: T, second: T) => number, left: number, right: number, n: number): T {
-    while (true) {
-        if (left === right) return array[left];
+            while (j >= 0 && comparer(x, array[j]) < 0) {
+                j--;
+            }
 
-        const pivotIndex = left + ((right - left) >> 1);
-        const pivotNewIndex = pivotPosition(array, comparer, left, right, pivotIndex);
+            if (i > j) {
+                break;
+            }
 
-        if (pivotNewIndex === n) return array[n];
+            if (i < j) {
+                const tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+            }
 
-        if (pivotNewIndex > n) {
-            right = pivotNewIndex - 1;
+            i++;
+            j--;
+        } while (i <= j);
+
+        if (i <= index) {
+            left = i + 1;
         } else {
-            left = pivotNewIndex + 1;
+            right = j - 1;
         }
-    }
+
+        if (j - left <= right - i) {
+            if (left < j) {
+                right = j;
+            }
+
+            left = i;
+        } else {
+            if (i < right) {
+                left = i;
+            }
+
+            right = j;
+        }
+    } while (left < right);
+
+    return array[index];
 }

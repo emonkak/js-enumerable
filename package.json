@@ -36,9 +36,13 @@
     "extension": [
       ".ts"
     ],
+    "include": [
+      "src"
+    ],
     "exclude": [
       "dist",
       "node_modules",
+      "test",
       "typings"
     ],
     "require": [

@@ -16,8 +16,10 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return this;
     }
 
-    [Symbol.iterator](): Iterator<TElement> {
-        return this.toArray()[Symbol.iterator]();
+    *[Symbol.iterator](): Iterator<TElement> {
+        for (const element of this.toArray()) {
+            yield element;
+        }
     }
 
     thenBy<TKey>(keySelector?: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {
@@ -262,7 +264,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return current;
     }
 
-    lastInPartitionOrDefault(minIndex: number, maxIndex: number, defaultValue: TElement = null): TElement {
+    lastOrDefaultInPartition(minIndex: number, maxIndex: number, defaultValue: TElement = null): TElement {
         const array = Array.from(this._source);
         const count = array.length;
         const comparer = this._getComparer();

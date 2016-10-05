@@ -6,10 +6,6 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
         super();
     }
 
-    get length(): number {
-        return this._count;
-    }
-
     *[Symbol.iterator](): Iterator<TResult> {
         for (let i = this._count; i > 0; i--) {
             yield this._element;
