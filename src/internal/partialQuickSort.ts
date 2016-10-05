@@ -1,7 +1,6 @@
-import IComparer from './IComparer';
 import pivotPosition from './pivotPosition';
 
-export default function partialQuickSort<T>(array: Array<T>, comparer: IComparer<T>, left: number, right: number, minIndex: number, maxIndex: number): void {
+export default function partialQuickSort<T>(array: Array<T>, comparer: (first: T, second: T) => number, left: number, right: number, minIndex: number, maxIndex: number): void {
     if (left < right) {
         const pivotIndex = left + ((right - left) >> 1);
         const pivotNewIndex = pivotPosition(array, comparer, left, right, pivotIndex);

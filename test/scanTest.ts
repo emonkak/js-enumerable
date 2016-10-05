@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/Enumerable';
+import Enumerable from '../src/bundle';
 
 describe('scan()', () => {
     it('should generates a sequence of accumulated values', () => {

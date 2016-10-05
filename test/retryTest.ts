@@ -1,10 +1,10 @@
 import * as assert from 'assert';
-import retry from '../src/retry';
+import Enumerable from '../src/bundle';
 
 describe('retry()', () => {
     it('should creates a sequence that retries enumerating the source sequence as long as an error occurs.', () => {
-        assert.deepEqual(Array.from(retry.call([1, 2, 3])), [1, 2, 3]);
-        assert.deepEqual(Array.from(retry.call([1, 2, 3], 2)), [1, 2, 3]);
+        assert.deepEqual(new Enumerable([1, 2, 3]).retry().toArray(), [1, 2, 3]);
+        assert.deepEqual(new Enumerable([1, 2, 3]).retry(2).toArray(), [1, 2, 3]);
 
         const xs = {
             [Symbol.iterator]: function*() {
@@ -14,7 +14,7 @@ describe('retry()', () => {
                 throw new Error()
             }
         };
-        const iterator = retry.call(xs, 2)[Symbol.iterator]();
+        const iterator = new Enumerable(xs).retry(2)[Symbol.iterator]();
         assert.deepEqual(iterator.next(), { done: false, value: 1 });
         assert.deepEqual(iterator.next(), { done: false, value: 2 });
         assert.deepEqual(iterator.next(), { done: false, value: 3 });

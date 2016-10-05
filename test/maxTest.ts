@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('max()', () => {
     it('should returns the maximum value in a sequence of values', () => {

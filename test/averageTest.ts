@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('average()', () => {
     it('should computes the average of a sequence of numbers', () => {

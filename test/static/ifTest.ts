@@ -1,5 +1,5 @@
-import Enumerable from '../../src';
 import * as assert from 'assert';
+import Enumerable from '../../src/bundle';
 
 describe('if()', () => {
     it('should returns an enumerable sequence based on the evaluation result of the given condition', () => {

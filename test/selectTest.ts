@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('select()', () => {
     it('should projects each element of a sequence', () => {

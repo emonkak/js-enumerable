@@ -1,42 +1,39 @@
 import * as assert from 'assert';
-import elementAt from '../src/elementAt';
-import orderBy from '../src/orderBy';
-import skip from '../src/skip';
-import take from '../src/take';
+import Enumerable from '../src/bundle';
 
 describe('elementAt()', () => {
     it('should returns the element at a specified index in a sequence', () => {
         const xs = [1, 2, 3, 4];
 
-        assert.strictEqual(elementAt.call(xs, 0), 1);
-        assert.strictEqual(elementAt.call(xs, 1), 2);
-        assert.strictEqual(elementAt.call(xs, 2), 3);
-        assert.strictEqual(elementAt.call(xs, 3), 4);
+        assert.strictEqual(new Enumerable(xs).elementAt(0), 1);
+        assert.strictEqual(new Enumerable(xs).elementAt(1), 2);
+        assert.strictEqual(new Enumerable(xs).elementAt(2), 3);
+        assert.strictEqual(new Enumerable(xs).elementAt(3), 4);
     });
 
     it('should throws the exception if index is out of range', () => {
         const xs = [1, 2, 3, 4];
 
-        assert.throws(() => elementAt.call(xs, 4));
+        assert.throws(() => new Enumerable(xs).elementAt(4));
     });
 
     it('should works with orderBy()', () => {
         const xs = [3, 2, 4, 1];
 
-        assert.strictEqual(elementAt.call(orderBy.call(xs), 0), 1);
-        assert.strictEqual(elementAt.call(orderBy.call(xs), 1), 2);
-        assert.strictEqual(elementAt.call(orderBy.call(xs), 2), 3);
-        assert.strictEqual(elementAt.call(orderBy.call(xs), 3), 4);
-        assert.strictEqual(elementAt.call(take.call(orderBy.call(xs), 2), 0), 1);
-        assert.strictEqual(elementAt.call(take.call(orderBy.call(xs), 2), 1), 2);
-        assert.strictEqual(elementAt.call(skip.call(orderBy.call(xs), 2), 0), 3);
-        assert.strictEqual(elementAt.call(skip.call(orderBy.call(xs), 2), 1), 4);
-        assert.strictEqual(elementAt.call(skip.call(take.call(orderBy.call(xs), 2), 1), 0), 2);
-        assert.strictEqual(elementAt.call(take.call(skip.call(orderBy.call(xs), 2), 1), 0), 3);
+        assert.strictEqual(new Enumerable(xs).orderBy().elementAt(0), 1);
+        assert.strictEqual(new Enumerable(xs).orderBy().elementAt(1), 2);
+        assert.strictEqual(new Enumerable(xs).orderBy().elementAt(2), 3);
+        assert.strictEqual(new Enumerable(xs).orderBy().elementAt(3), 4);
+        assert.strictEqual(new Enumerable(xs).orderBy().take(2).elementAt(0), 1);
+        assert.strictEqual(new Enumerable(xs).orderBy().take(2).elementAt(1), 2);
+        assert.strictEqual(new Enumerable(xs).orderBy().skip(2).elementAt(0), 3);
+        assert.strictEqual(new Enumerable(xs).orderBy().skip(2).elementAt(1), 4);
+        assert.strictEqual(new Enumerable(xs).orderBy().take(2).skip(1).elementAt(0), 2);
+        assert.strictEqual(new Enumerable(xs).orderBy().skip(2).take(1).elementAt(0), 3);
 
-        assert.throws(() => elementAt.call(orderBy.call(xs), 4));
-        assert.throws(() => elementAt.call(take.call(orderBy.call(xs), 2), 3));
-        assert.throws(() => elementAt.call(skip.call(take.call(orderBy.call(xs), 2), 1), 1));
-        assert.throws(() => elementAt.call(take.call(skip.call(orderBy.call(xs), 2), 1), 1));
+        assert.throws(() => new Enumerable(xs).orderBy().elementAt(4));
+        assert.throws(() => new Enumerable(xs).orderBy().take(2).elementAt(3));
+        assert.throws(() => new Enumerable(xs).orderBy().take(2).skip(1).elementAt(1));
+        assert.throws(() => new Enumerable(xs).orderBy().skip(2).take(1).elementAt(1));
     });
 });

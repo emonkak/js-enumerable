@@ -1,6 +1,4 @@
-import IComparer from './IComparer';
-
-export default function pivotPosition<T>(array: Array<T>, comparer: IComparer<T>, left: number, right: number, pivotIndex: number): number {
+export default function pivotPosition<T>(array: Array<T>, comparer: (first: T, second: T) => number, left: number, right: number, pivotIndex: number): number {
     const pivotValue = array[pivotIndex];
 
     swap(array, right, pivotIndex);

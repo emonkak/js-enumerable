@@ -7,8 +7,9 @@ export default function count<TSource>(this: Iterable<TSource>, predicate?: (ite
         return count;
     } else {
         if (Array.isArray(this)) return (this as Array<TSource>).length;
+        const iterator = this[Symbol.iterator]();
         let count = 0;
-        for (const element of this) {
+        for (let result = iterator.next(); !result.done; result = iterator.next()) {
             count++;
         }
         return count;

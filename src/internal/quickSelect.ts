@@ -1,7 +1,6 @@
-import IComparer from './IComparer';
 import pivotPosition from './pivotPosition';
 
-export default function quickSelect<T>(array: Array<T>, comparer: IComparer<T>, left: number, right: number, n: number): T {
+export default function quickSelect<T>(array: Array<T>, comparer: (first: T, second: T) => number, left: number, right: number, n: number): T {
     while (true) {
         if (left === right) return array[left];
 

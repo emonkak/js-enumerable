@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('min()', () => {
     it('should returns the minimum value in a sequence of values', () => {

@@ -1,12 +1,12 @@
 import * as assert from 'assert';
-import defaultIfEmpty from '../src/defaultIfEmpty';
+import Enumerable from '../src/bundle';
 
 describe('defaultIfEmpty()', () => {
     it('should returns the elements of the specified sequence', () => {
-        assert.deepEqual(Array.from(defaultIfEmpty.call([1, 2, 3], 123)), [1, 2, 3]);
+        assert.deepEqual(new Enumerable([1, 2, 3]).defaultIfEmpty(123).toArray(), [1, 2, 3]);
     });
 
     it('should returns the specified value in a singleton collection if the sequence is empty', () => {
-        assert.deepEqual(Array.from(defaultIfEmpty.call([], 123)), [123]);
+        assert.deepEqual(new Enumerable([]).defaultIfEmpty(123).toArray(), [123]);
     });
 });

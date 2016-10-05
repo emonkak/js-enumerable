@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import onErrorResumeNext from '../src/onErrorResumeNext';
+import Enumerable from '../src/bundle';
 
 describe('onErrorResumeNext()', () => {
     it('should creates a sequence that concatenates both given sequences', () => {
@@ -11,6 +11,6 @@ describe('onErrorResumeNext()', () => {
             }
         };
         const ys = [3, 4];
-        assert.deepEqual(Array.from(onErrorResumeNext.call(xs, ys)), [1, 2, 3, 4]);
+        assert.deepEqual(new Enumerable(xs).onErrorResumeNext(ys).toArray(), [1, 2, 3, 4]);
     });
 });

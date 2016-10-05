@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('toDictionary()', () => {
     it('should creates a Map<T> from Iterable<T>', () => {

@@ -1,6 +1,4 @@
-import IComparer from './IComparer';
 import OrderedPartition from './OrderedPartition';
-import Partition from './Partition';
 import partialQuickSort from './partialQuickSort';
 import quickSelect from './quickSelect';
 import { Enumerable } from './Enumerable';
@@ -306,7 +304,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return array.sort(comparer);
     }
 
-    toArrayPartition(minIndex: number, maxIndex: number): TElement[] {
+    toArrayInPartition(minIndex: number, maxIndex: number): TElement[] {
         const array = Array.from(this._source);
         const count = array.length;
 
@@ -325,7 +323,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return [];
     }
 
-    private _getComparer(next?: IComparer<TElement>): IComparer<TElement> {
+    private _getComparer(next?: (first: TElement, second: TElement) => number): (first: TElement, second: TElement) => number {
         if (!next) next = () => 0;
         const comparer = (first: TElement, second: TElement): number => {
             const firstKey = this._keySelector(first);

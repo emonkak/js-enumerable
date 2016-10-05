@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('groupJoin()', () => {
     it('should correlates the elements of two sequences based on equality of keys and groups the results', () => {

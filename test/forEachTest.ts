@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import Enumerable from '../src';
+import Enumerable from '../src/bundle';
 
 describe('forEach()', () => {
     it('should enumerates the sequence and invokes the given action for each value in the sequence', () => {

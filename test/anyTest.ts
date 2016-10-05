@@ -1,5 +1,5 @@
-import Enumerable from '../src';
 import * as assert from 'assert';
+import Enumerable from '../src/bundle';
 
 describe('any()', () => {
     it('should determines whether a sequence contains any elements', () => {

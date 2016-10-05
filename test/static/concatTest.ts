@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src';
+import Enumerable from '../../src/bundle';
 
 describe('concat()', () => {
     it('should concatenates two sequences', () => {

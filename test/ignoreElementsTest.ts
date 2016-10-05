@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as sinon from 'sinon';
-import ignoreElements from '../src/ignoreElements';
+import Enumerable from '../src/bundle';
 
 describe('ignoreElements()', () => {
     it('should ignores all elements in the source sequence', () => {
@@ -12,7 +12,7 @@ describe('ignoreElements()', () => {
         const source = {
             [Symbol.iterator]: iterator
         };
-        assert.deepEqual(Array.from(ignoreElements.call(source)), []);
+        assert.deepEqual(new Enumerable(source).ignoreElements().toArray(), []);
         sinon.assert.notCalled(iterator);
     });
 });
