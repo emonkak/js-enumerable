@@ -1,5 +1,9 @@
 export class Enumerable<TSource> implements Iterable<TSource> {
-    constructor(protected _source: Iterable<TSource>) {
+    constructor(protected readonly _source: Iterable<TSource>) {
+    }
+
+    get source(): Iterable<TSource> {
+        return this._source;
     }
 
     [Symbol.iterator](): Iterator<TSource> {

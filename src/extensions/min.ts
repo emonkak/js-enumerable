@@ -1,5 +1,9 @@
-import min from '../min';
+import minFn from '../min';
 import { Enumerable } from '../internal/Enumerable';
+
+function min<TSource>(this: Enumerable<TSource>, selector?: (element: TSource) => number): number {
+    return minFn.call(this.source, selector);
+}
 
 Enumerable.prototype.min = min;
 

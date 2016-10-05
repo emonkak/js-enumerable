@@ -2,7 +2,7 @@ import skipLastFn from '../skipLast';
 import { Enumerable } from '../internal/Enumerable';
 
 function skipLast<TSource>(this: Enumerable<TSource>, count: number): Enumerable<TSource> {
-    return this.lift<TSource>(skipLastFn.call(this, count));
+    return this.lift<TSource>(skipLastFn.call(this.source, count));
 }
 
 Enumerable.prototype.skipLast = skipLast;

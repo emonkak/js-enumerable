@@ -1,5 +1,10 @@
-import toLookup from '../toLookup';
+import toLookupFn from '../toLookup';
 import { Enumerable } from '../internal/Enumerable';
+
+function toLookup<TSource, TKey>(this: Enumerable<TSource>, keySelector?: (element: TSource) => TKey): Map<TKey, TSource[]>;
+function toLookup<TSource, TKey, TElement>(this: Enumerable<TSource>, keySelector?: (element: TSource) => TKey, elementSelector?: (element: TSource) => TElement): Map<TKey, TElement[]> {
+    return toLookupFn.call(this.source, keySelector, elementSelector);
+}
 
 Enumerable.prototype.toLookup = toLookup;
 

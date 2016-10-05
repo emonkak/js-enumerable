@@ -12,6 +12,10 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         super(_source);
     }
 
+    get source(): Iterable<TElement> {
+        return this;
+    }
+
     [Symbol.iterator](): Iterator<TElement> {
         return this.toArray()[Symbol.iterator]();
     }

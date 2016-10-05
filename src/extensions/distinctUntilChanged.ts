@@ -3,7 +3,7 @@ import { Enumerable } from '../internal/Enumerable';
 
 function distinctUntilChanged<TSource>(this: Enumerable<TSource>): Enumerable<TSource>;
 function distinctUntilChanged<TSource, TKey>(this: Enumerable<TSource>, keySelector?: (element: TSource) => TKey): Enumerable<TSource> {
-    return this.lift<TSource>(distinctUntilChangedFn.call(this, keySelector));
+    return this.lift<TSource>(distinctUntilChangedFn.call(this.source, keySelector));
 }
 
 Enumerable.prototype.distinctUntilChanged = distinctUntilChanged;

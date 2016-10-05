@@ -2,7 +2,7 @@ import doWhileFn from '../doWhile';
 import { Enumerable } from '../internal/Enumerable';
 
 function doWhile<TSource>(this: Enumerable<TSource>, condition: () => boolean): Enumerable<TSource> {
-    return this.lift<TSource>(doWhileFn.call(this, condition));
+    return this.lift<TSource>(doWhileFn.call(this.source, condition));
 }
 
 Enumerable.prototype.doWhile = doWhile;
