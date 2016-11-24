@@ -10,6 +10,6 @@ export default function take<TSource>(this: Iterable<TSource>, count: number): I
 function *takeIterator<TSource>(source: Iterable<TSource>, count: number): Iterable<TSource> {
     for (const element of source) {
         yield element;
-        if (--count === 0) break;
+        if (--count <= 0) break;
     }
 }
