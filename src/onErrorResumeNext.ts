@@ -3,5 +3,8 @@ export default function* onErrorResumeNext<TSource>(this: Iterable<TSource>, sec
         yield* this;
     } catch (error) {
     }
-    yield* second;
+    try {
+        yield* second;
+    } catch (error) {
+    }
 }

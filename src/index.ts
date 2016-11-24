@@ -53,6 +53,7 @@ import './extensions/static/concat';
 import './extensions/static/defer';
 import './extensions/static/generate';
 import './extensions/static/if';
+import './extensions/static/onErrorResumeNext';
 import './extensions/static/range';
 import './extensions/static/repeat';
 import './extensions/static/return';
