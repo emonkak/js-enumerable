@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('skipLast()', () => {
     it('should bypasses a specified number of contiguous elements from the end of the sequence', () => {

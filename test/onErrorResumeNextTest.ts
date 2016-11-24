@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('onErrorResumeNext()', () => {
     it('should creates a sequence that concatenates both given sequences', () => {

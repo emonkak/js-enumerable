@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('lastOrDefault()', () => {
     it('should returns the last element of a sequence', () => {

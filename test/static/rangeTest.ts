@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src/bundle';
+import Enumerable from '../../src/';
 
 describe('range()', () => {
     it('should generates a sequence of integral numbers within a specified range', () => {

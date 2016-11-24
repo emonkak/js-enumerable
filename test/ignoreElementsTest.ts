@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as sinon from 'sinon';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('ignoreElements()', () => {
     it('should ignores all elements in the source sequence', () => {

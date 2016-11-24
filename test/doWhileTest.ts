@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('doWhile()', () => {
     it('should generates an enumerable sequence by repeating a source sequence as long as the given loop postcondition holds', () => {

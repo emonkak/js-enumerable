@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('startWith()', () => {
     it('should returns the source sequence prefixed with the specified value', () => {

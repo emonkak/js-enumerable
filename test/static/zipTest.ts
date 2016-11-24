@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src/bundle';
+import Enumerable from '../../src/';
 
 describe('zip()', () => {
     it('should applies a specified function to the corresponding elements of two sequences', () => {

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('skip()', () => {
     it('should bypasses a specified number of elements in a sequence and then returns the remaining elements', () => {

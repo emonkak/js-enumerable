@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('buffer()', () => {
     it('should generates a sequence of non-overlapping adjacent buffers over the source sequence', () => {

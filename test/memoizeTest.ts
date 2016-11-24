@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('memoize()', () => {
     it('should creates a buffer with a view over the source sequence', () => {

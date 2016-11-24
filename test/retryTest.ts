@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('retry()', () => {
     it('should creates a sequence that retries enumerating the source sequence as long as an error occurs.', () => {

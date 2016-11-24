@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as sinon from 'sinon';
-import Enumerable from '../src/bundle';
+import Enumerable from '../src/';
 
 describe('do()', () => {
     it('should lazily invokes an action for each value in the sequence, and executes an action upon exceptional termination', () => {
