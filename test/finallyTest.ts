@@ -11,10 +11,10 @@ describe('finally()', () => {
 
         const source2 = {
             [Symbol.iterator]: function*() {
-                yield 1
-                yield 2
-                yield 3
-                throw new Error()
+                yield 1;
+                yield 2;
+                yield 3;
+                throw new Error();
             }
         };
         const finallyAction2 = sinon.spy();

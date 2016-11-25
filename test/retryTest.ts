@@ -8,10 +8,10 @@ describe('retry()', () => {
 
         const xs = {
             [Symbol.iterator]: function*() {
-                yield 1
-                yield 2
-                yield 3
-                throw new Error()
+                yield 1;
+                yield 2;
+                yield 3;
+                throw new Error();
             }
         };
         const iterator = new Enumerable(xs).retry(2)[Symbol.iterator]();

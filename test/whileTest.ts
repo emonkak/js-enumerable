@@ -6,7 +6,7 @@ describe('while()', () => {
         let x = 5;
         const xs = {
             [Symbol.iterator]: function*() {
-                yield x--
+                yield x--;
             }
         };
         assert.deepEqual(new Enumerable(xs).while(() => x > 0).toArray(), [5, 4, 3, 2, 1]);
