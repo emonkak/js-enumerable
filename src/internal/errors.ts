@@ -3,9 +3,9 @@ export function argumentOutOfRange(s: string): Error {
 }
 
 export function moreThanOneMatch(): Error {
-    return new Error('More than one match found.');
+    return new Error('Sequence contains more than one element');
 }
 
 export function noElements(): Error {
-    return new Error('Sequence contains no elements.');
+    return new Error('Sequence contains no elements');
 }
