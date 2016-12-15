@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src/';
+import Enumerable from '../bundle';
 
 describe('catch()', () => {
     it('should creates a sequence by concatenating source sequences until a source sequence completes successfully', () => {

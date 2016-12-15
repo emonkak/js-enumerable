@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src/';
+import Enumerable from '../bundle';
 
 describe('defer()', () => {
     it('should creates an enumerable sequence based on an enumerable factory function', () => {

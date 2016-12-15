@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('intersect()', () => {
     it('should Produces the set intersection of two sequences by using the default equality comparer to compare values', () => {

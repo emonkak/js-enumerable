@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('reverse()', () => {
     it('should inverts the order of the elements in a sequence', () => {

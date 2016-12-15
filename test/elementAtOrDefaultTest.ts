@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('elementAtOrDefault()', () => {
     it('should returns the element at a specified index in a sequence', () => {

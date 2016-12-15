@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('skipWhile()', () => {
     it('should skip elements in a sequence while a condition is true', () => {

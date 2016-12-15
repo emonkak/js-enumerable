@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('defaultIfEmpty()', () => {
     it('should returns the elements of the specified sequence', () => {
