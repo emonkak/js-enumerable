@@ -16,8 +16,5 @@
   "include": [
     "src/**/*.ts",
     "test/**/*.ts"
-  ],
-  "files": [
-    "typings/index.d.ts"
   ]
 }

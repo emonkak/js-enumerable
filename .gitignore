@@ -3,5 +3,4 @@
 /coverage
 /dist
 /node_modules
-/typings
-npm-debug.log
+npm-debug.log*
