@@ -43,8 +43,7 @@
     "exclude": [
       "dist",
       "node_modules",
-      "test",
-      "typings"
+      "test"
     ],
     "require": [
       "ts-node/register"
