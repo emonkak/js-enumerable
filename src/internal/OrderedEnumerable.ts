@@ -247,8 +247,12 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         const count = array.length;
         const comparer = this._getComparer();
 
-        if (minIndex >= count) throw noElements();
-        if (maxIndex < count - 1) return quickSelect(array, comparer, 0, count - 1, maxIndex);
+        if (minIndex >= count) {
+            throw noElements();
+        }
+        if (maxIndex < count - 1) {
+            return quickSelect(array, comparer, 0, count - 1, maxIndex);
+        }
 
         let i = 1;
         let current = array[0];
@@ -269,8 +273,12 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         const count = array.length;
         const comparer = this._getComparer();
 
-        if (minIndex >= count) return defaultValue;
-        if (maxIndex < count - 1) return quickSelect(array, comparer, 0, count - 1, maxIndex);
+        if (minIndex >= count) {
+            return defaultValue;
+        }
+        if (maxIndex < count - 1) {
+            return quickSelect(array, comparer, 0, count - 1, maxIndex);
+        }
 
         let i = 1;
         let current = array[0];
@@ -287,19 +295,27 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
     }
 
     elementAt(index: number): TElement {
-        if (index === 0) return this.first();
+        if (index === 0) {
+            return this.first();
+        }
         const array = Array.from(this._source);
         const count = array.length;
-        if (index > count - 1) throw noElements();
+        if (index > count - 1) {
+            throw noElements();
+        }
         const comparer = this._getComparer();
         return quickSelect(array, comparer, 0, count - 1, index);
     }
 
     elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
-        if (index === 0) return this.firstOrDefault(null, defaultValue);
+        if (index === 0) {
+            return this.firstOrDefault(null, defaultValue);
+        }
         const array = Array.from(this._source);
         const count = array.length;
-        if (index > count - 1) return defaultValue;
+        if (index > count - 1) {
+            return defaultValue;
+        }
         const comparer = this._getComparer();
         return quickSelect(array, comparer, 0, count - 1, index);
     }
@@ -330,12 +346,18 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
     }
 
     private _getComparer(next?: (first: TElement, second: TElement) => number): (first: TElement, second: TElement) => number {
-        if (!next) next = () => 0;
+        if (!next) {
+            next = () => 0;
+        }
         const comparer = (first: TElement, second: TElement): number => {
             const firstKey = this._keySelector(first);
             const secondKey = this._keySelector(second);
-            if (firstKey < secondKey) return this._descending ? 1 : -1;
-            if (firstKey > secondKey) return this._descending ? -1 : 1;
+            if (firstKey < secondKey) {
+                return this._descending ? 1 : -1;
+            }
+            if (firstKey > secondKey) {
+                return this._descending ? -1 : 1;
+            }
             return next(first, second);
         };
         return this._parent ? this._parent._getComparer(comparer) : comparer;

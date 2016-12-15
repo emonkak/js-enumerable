@@ -23,7 +23,9 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
 
     take(count: number): Partition<TElement> {
         let maxIndex = this._minIndex + count - 1;
-        if (maxIndex > this._maxIndex) maxIndex = this._maxIndex;
+        if (maxIndex > this._maxIndex) {
+            maxIndex = this._maxIndex;
+        }
         return new OrderedPartition(this._source, this._minIndex, maxIndex);
     }
 

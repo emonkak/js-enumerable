@@ -12,11 +12,17 @@ export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicat
             }
         }
 
-        if (hasValue) return value;
+        if (hasValue) {
+            return value;
+        }
     } else {
-        if (this instanceof Partition) return (this as any).lastOrDefault(defaultValue);
+        if (this instanceof Partition) {
+            return (this as any).lastOrDefault(defaultValue);
+        }
         if (Array.isArray(this)) {
-            if ((this as any).length > 0) return (this as any)[(this as any).length - 1];
+            if ((this as any).length > 0) {
+                return (this as any)[(this as any).length - 1];
+            }
         } else {
             let value: TSource;
             let hasValue = false;
@@ -26,7 +32,9 @@ export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicat
                 hasValue = true;
             }
 
-            if (hasValue) return value;
+            if (hasValue) {
+                return value;
+            }
         }
     }
     return defaultValue;

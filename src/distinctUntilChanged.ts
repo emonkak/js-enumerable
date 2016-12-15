@@ -1,6 +1,8 @@
 export default function distinctUntilChanged<TSource>(this: Iterable<TSource>): Iterable<TSource>;
 export default function* distinctUntilChanged<TSource, TKey>(this: Iterable<TSource>, keySelector?: (element: TSource) => TKey): Iterable<TSource> {
-    if (keySelector == null) keySelector = x => x as any;
+    if (keySelector == null) {
+        keySelector = x => x as any;
+    }
     let hasCurrentKey = false;
     let currentKey: TKey = null;
     for (const element of this) {

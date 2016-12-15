@@ -1,9 +1,15 @@
 import { argumentOutOfRange } from './internal/errors';
 
 export default function* buffer<TSource>(this: Iterable<TSource>, count: number, skip?: number): Iterable<TSource[]> {
-    if (skip == null) skip = count;
-    if (count <= 0) throw argumentOutOfRange('count');
-    if (skip <= 0) throw argumentOutOfRange('skip');
+    if (skip == null) {
+        skip = count;
+    }
+    if (count <= 0) {
+        throw argumentOutOfRange('count');
+    }
+    if (skip <= 0) {
+        throw argumentOutOfRange('skip');
+    }
 
     let buffer: TSource[] = [];
     let pushed = 0;
@@ -23,5 +29,7 @@ export default function* buffer<TSource>(this: Iterable<TSource>, count: number,
         skipped++;
     }
 
-    if (pushed > 0) yield buffer;
+    if (pushed > 0) {
+        yield buffer;
+    }
 }

@@ -1,9 +1,15 @@
 import Partition from './internal/Partition';
 
 export default function skip<TSource>(this: Iterable<TSource>, count: number): Iterable<TSource> {
-    if (count <= 0) return this;
-    if (this instanceof Partition) return (this as any).skip(count);
-    if (Array.isArray(this)) return skipArray<TSource>(this as any, count);
+    if (count <= 0) {
+        return this;
+    }
+    if (this instanceof Partition) {
+        return (this as any).skip(count);
+    }
+    if (Array.isArray(this)) {
+        return skipArray<TSource>(this as any, count);
+    }
     return skipIterator<TSource>(this, count);
 }
 
