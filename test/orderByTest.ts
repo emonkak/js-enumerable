@@ -7,6 +7,7 @@ describe('orderBy()', () => {
 
         assert.deepEqual(new Enumerable(xs).orderBy().toArray(), [1, 1, 2, 3, 4]);
         assert.deepEqual(new Enumerable(new Enumerable(xs).orderBy()).toArray(), [1, 1, 2, 3, 4]);
+        assert.deepEqual(Array.from(new Enumerable(xs).orderBy().source), [1, 1, 2, 3, 4]);
         assert.deepEqual(new Enumerable(xs).orderBy(n => n % 2).thenBy(n => n).toArray(), [2, 4, 1, 1, 3]);
         assert.deepEqual(new Enumerable(xs).orderBy(n => n % 2).thenByDescending(n => -n).toArray(), [2, 4, 1, 1, 3]);
         assert.deepEqual(new Enumerable(xs).orderBy().take(2).toArray(), [1, 1]);
