@@ -24,7 +24,9 @@ export default class RangePartition extends Partition<number> {
     }
 
     skip(count: number): Partition<number> {
-        if (count >= this._end - this._start) return new EmptyPartition<number>();
+        if (count >= this._end - this._start) {
+            return new EmptyPartition<number>();
+        }
         return new RangePartition(this._start + count, this._end - this._start - count);
     }
 
@@ -34,7 +36,9 @@ export default class RangePartition extends Partition<number> {
     }
 
     elementAt(index: number): number {
-        if (index >= this._end - this._start) throw argumentOutOfRange('index');
+        if (index >= this._end - this._start) {
+            throw argumentOutOfRange('index');
+        }
         return this._start + index;
     }
 

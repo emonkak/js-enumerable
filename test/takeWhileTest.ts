@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('takeWhile()', () => {
     it('should yield elements from a sequence while a condition is true', () => {

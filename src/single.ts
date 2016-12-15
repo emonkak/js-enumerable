@@ -7,13 +7,17 @@ export default function single<TSource>(this: Iterable<TSource>, predicate?: (el
 
         for (const element of this) {
             if (predicate(element)) {
-                if (hasValue) throw moreThanOneMatch();
+                if (hasValue) {
+                    throw moreThanOneMatch();
+                }
                 value = element;
                 hasValue = true;
             }
         }
 
-        if (hasValue) return value;
+        if (hasValue) {
+            return value;
+        }
     } else {
         if (Array.isArray(this)) {
             switch ((this as any).length) {
@@ -29,12 +33,16 @@ export default function single<TSource>(this: Iterable<TSource>, predicate?: (el
             let hasValue = false;
 
             for (const element of this) {
-                if (hasValue) throw moreThanOneMatch();
+                if (hasValue) {
+                    throw moreThanOneMatch();
+                }
                 value = element;
                 hasValue = true;
             }
 
-            if (hasValue) return value;
+            if (hasValue) {
+                return value;
+            }
         }
     }
     throw noElements();

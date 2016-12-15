@@ -5,13 +5,17 @@ export default function singleOrDefault<TSource>(this: Iterable<TSource>, predic
 
         for (const element of this) {
             if (predicate(element)) {
-                if (hasValue) return defaultValue;
+                if (hasValue) {
+                    return defaultValue;
+                }
                 value = element;
                 hasValue = true;
             }
         }
 
-        if (hasValue) return value;
+        if (hasValue) {
+            return value;
+        }
     } else {
         if (Array.isArray(this)) {
             switch ((this as any).length) {
@@ -25,12 +29,16 @@ export default function singleOrDefault<TSource>(this: Iterable<TSource>, predic
             let hasValue = false;
 
             for (const element of this) {
-                if (hasValue) return defaultValue;
+                if (hasValue) {
+                    return defaultValue;
+                }
                 value = element;
                 hasValue = true;
             }
 
-            if (hasValue) return value;
+            if (hasValue) {
+                return value;
+            }
         }
     }
     return defaultValue;

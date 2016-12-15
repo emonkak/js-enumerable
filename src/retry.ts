@@ -1,5 +1,7 @@
 export default function* retry<TSource>(this: Iterable<TSource>, retryCount?: number): Iterable<TSource> {
-    if (retryCount == null) retryCount = Infinity;
+    if (retryCount == null) {
+        retryCount = Infinity;
+    }
     let error: any;
     while (retryCount-- > 0) {
         error = null;
@@ -8,7 +10,11 @@ export default function* retry<TSource>(this: Iterable<TSource>, retryCount?: nu
         } catch (e) {
             error = e;
         }
-        if (error == null) break;
+        if (error == null) {
+            break;
+        }
     }
-    if (error != null) throw error;
+    if (error != null) {
+        throw error;
+    }
 }

@@ -7,7 +7,11 @@ export default function* _catch<TSource>(...sources: Iterable<TSource>[]): Itera
         } catch (e) {
             error = e;
         }
-        if (error == null) break;
+        if (error == null) {
+            break;
+        }
     }
-    if (error != null) throw error;
+    if (error != null) {
+        throw error;
+    }
 }

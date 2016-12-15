@@ -1,16 +1,16 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('onErrorResumeNext()', () => {
     it('should creates a sequence that concatenates both given sequences', () => {
-        const xs = {
+        const xs: Iterable<number> = {
             [Symbol.iterator]: function*() {
                 yield 1;
                 yield 2;
                 throw new Error();
             }
         };
-        const ys = {
+        const ys: Iterable<number> = {
             [Symbol.iterator]: function*() {
                 yield 3;
                 yield 4;

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../../src/';
+import Enumerable from '../bundle';
 
 describe('return()', () => {
     it('should returns a sequence with a single element.', () => {

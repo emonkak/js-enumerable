@@ -6,5 +6,7 @@ export default function* defaultIfEmpty<TSource>(this: Iterable<TSource>, defaul
         hasValue = true;
     }
 
-    if (!hasValue) yield defaultValue;
+    if (!hasValue) {
+        yield defaultValue;
+    }
 }

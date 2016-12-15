@@ -13,7 +13,9 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
     }
 
     skip(count: number): Partition<TResult> {
-        if (count >= this._count) return new EmptyPartition<TResult>();
+        if (count >= this._count) {
+            return new EmptyPartition<TResult>();
+        }
         return new RepeatPartition(this._element, this._count - count);
     }
 
@@ -22,7 +24,9 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
     }
 
     elementAt(index: number): TResult {
-        if (index >= this._count) throw Error('Sequence index is out of range.');
+        if (index >= this._count) {
+            throw new Error('Sequence index is out of range.');
+        }
         return this._element;
     }
 

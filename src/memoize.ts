@@ -24,5 +24,5 @@ export default function memoize<TSource>(this: Iterable<TSource>): Iterable<TSou
                 }
             }
         }
-    }
+    };
 }

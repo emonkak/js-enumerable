@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('distinct()', () => {
     it('should returns distinct elements from a sequence', () => {

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../src/';
+import Enumerable from './bundle';
 
 describe('sum()', () => {
     it('should computes the sum of a sequence of numeric values', () => {
