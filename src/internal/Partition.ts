@@ -7,15 +7,18 @@ abstract class Partition<TElement> implements Iterable<TElement> {
 
     abstract elementAt(index: number): TElement;
 
-    abstract elementAtOrDefault(index: number, defaultValue?: TElement): TElement;
+    abstract elementAtOrDefault(index: number): TElement | null;
+    abstract elementAtOrDefault(index: number, defaultValue: TElement): TElement;
 
     abstract first(): TElement;
 
-    abstract firstOrDefault(defaultValue?: TElement): TElement;
+    abstract firstOrDefault(): TElement | null;
+    abstract firstOrDefault(defaultValue: TElement): TElement;
 
     abstract last(): TElement;
 
-    abstract lastOrDefault(defaultValue?: TElement): TElement;
+    abstract lastOrDefault(): TElement | null;
+    abstract lastOrDefault(defaultValue: TElement): TElement;
 }
 
 export default Partition;

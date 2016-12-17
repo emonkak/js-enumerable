@@ -4,7 +4,7 @@ export default function* distinctUntilChanged<TSource, TKey>(this: Iterable<TSou
         keySelector = x => x as any;
     }
     let hasCurrentKey = false;
-    let currentKey: TKey = null;
+    let currentKey: TKey | null = null;
     for (const element of this) {
         const key = keySelector(element);
         if (!hasCurrentKey || currentKey !== key) {

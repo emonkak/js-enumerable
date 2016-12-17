@@ -10,7 +10,7 @@ export default function toLookup<TSource, TKey, TElement>(this: Iterable<TSource
         const key = keySelector(element);
         const value = elementSelector(element);
         if (lookup.has(key)) {
-            lookup.get(key).push(value);
+            lookup.get(key)!.push(value);
         } else {
             lookup.set(key, [value]);
         }

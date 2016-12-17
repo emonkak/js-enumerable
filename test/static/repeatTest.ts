@@ -18,10 +18,10 @@ describe('repeat()', () => {
         assert.strictEqual(Enumerable.repeat(123).elementAt(999), 123);
         assert.strictEqual(Enumerable.repeat(123).elementAtOrDefault(0), 123);
         assert.strictEqual(Enumerable.repeat(123).elementAtOrDefault(999), 123);
-        assert.strictEqual(Enumerable.repeat(123, 0).firstOrDefault(null, null), null);
-        assert.strictEqual(Enumerable.repeat(123, 0).lastOrDefault(null, null), null);
-        assert.strictEqual(Enumerable.repeat(123, 0).elementAtOrDefault(999, null), null);
-        assert.strictEqual(Enumerable.repeat(123, 1).elementAtOrDefault(999, null), null);
+        assert.strictEqual(Enumerable.repeat(123, 0).firstOrDefault(null, 456), 456);
+        assert.strictEqual(Enumerable.repeat(123, 0).lastOrDefault(null, 456), 456);
+        assert.strictEqual(Enumerable.repeat(123, 0).elementAtOrDefault(999, 456), 456);
+        assert.strictEqual(Enumerable.repeat(123, 1).elementAtOrDefault(999, 456), 456);
 
         assert.throws(() => Enumerable.repeat(123, -1));
         assert.throws(() => Enumerable.repeat(123, 0).first());

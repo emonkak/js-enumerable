@@ -11,7 +11,7 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
     }
 
     next(): IteratorResult<TElement> {
-        return { done: true, value: null };
+        return { done: true, value: null as any };
     }
 
     skip(count: number): Partition<TElement> {
@@ -22,11 +22,23 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
         return this;
     }
 
+    elementAt(index: number): TElement {
+        throw noElements();
+    }
+
+    elementAtOrDefault(index: number): TElement | null;
+    elementAtOrDefault(index: number, defaultValue: TElement): TElement;
+    elementAtOrDefault(index: number, defaultValue: TElement | null = null): TElement | null {
+        return defaultValue;
+    }
+
     first(): TElement {
         throw noElements();
     }
 
-    firstOrDefault(defaultValue: TElement = null): TElement {
+    firstOrDefault(): TElement | null;
+    firstOrDefault(defaultValue: TElement): TElement;
+    firstOrDefault(defaultValue: TElement | null = null): TElement | null {
         return defaultValue;
     }
 
@@ -34,15 +46,9 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
         throw noElements();
     }
 
-    lastOrDefault(defaultValue: TElement = null): TElement {
-        return defaultValue;
-    }
-
-    elementAt(index: number): TElement {
-        throw noElements();
-    }
-
-    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
+    lastOrDefault(): TElement | null;
+    lastOrDefault(defaultValue: TElement): TElement;
+    lastOrDefault(defaultValue: TElement | null = null): TElement | null {
         return defaultValue;
     }
 }

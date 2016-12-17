@@ -34,8 +34,8 @@ describe('orderBy()', () => {
         assert.strictEqual(new Enumerable(xs).orderBy().take(2).skip(1).firstOrDefault(), 1);
         assert.strictEqual(new Enumerable(xs).orderBy().skip(2).take(1).firstOrDefault(), 2);
         assert.strictEqual(new Enumerable([]).orderBy().firstOrDefault(), null);
-        assert.strictEqual(new Enumerable([]).orderBy().firstOrDefault(x => x % 2 === 0), null);
-        assert.strictEqual(new Enumerable([]).orderBy().firstOrDefault(x => x % 2 === 1), null);
+        assert.strictEqual(new Enumerable([] as number[]).orderBy().firstOrDefault(x => x % 2 === 0), null);
+        assert.strictEqual(new Enumerable([] as number[]).orderBy().firstOrDefault(x => x % 2 === 1), null);
 
         assert.strictEqual(new Enumerable(xs).orderBy().last(), 4);
         assert.strictEqual(new Enumerable(xs).orderBy().last(x => x % 2 === 0), 4);
@@ -54,8 +54,8 @@ describe('orderBy()', () => {
         assert.strictEqual(new Enumerable(xs).orderBy().skip(2).take(1).lastOrDefault(), 2);
         assert.strictEqual(new Enumerable(xs).orderBy().skip(999).lastOrDefault(), null);
         assert.strictEqual(new Enumerable([]).orderBy().lastOrDefault(), null);
-        assert.strictEqual(new Enumerable([]).orderBy().lastOrDefault(x => x % 2 === 0), null);
-        assert.strictEqual(new Enumerable([]).orderBy().lastOrDefault(x => x % 2 === 1), null);
+        assert.strictEqual(new Enumerable([] as number[]).orderBy().lastOrDefault(x => x % 2 === 0), null);
+        assert.strictEqual(new Enumerable([] as number[]).orderBy().lastOrDefault(x => x % 2 === 1), null);
 
         assert.strictEqual(new Enumerable(xs).orderBy().elementAt(0), 1);
         assert.strictEqual(new Enumerable(xs).orderBy().elementAt(1), 1);

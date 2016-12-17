@@ -1,8 +1,11 @@
 import Partition from './internal/Partition';
 
-export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicate?: (value: TSource) => boolean, defaultValue: TSource = null): TSource {
+export default function lastOrDefault<TSource>(this: Iterable<TSource>): TSource | null;
+export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicate: (value: TSource) => boolean): TSource | null;
+export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicate: ((value: TSource) => boolean) | null, defaultValue: TSource): TSource;
+export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicate?: ((value: TSource) => boolean) | null, defaultValue: TSource | null = null): TSource | null {
     if (predicate) {
-        let value: TSource;
+        let value: TSource | undefined;
         let hasValue = false;
 
         for (const element of this) {
@@ -13,7 +16,7 @@ export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicat
         }
 
         if (hasValue) {
-            return value;
+            return value as TSource;
         }
     } else {
         if (this instanceof Partition) {
@@ -24,7 +27,7 @@ export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicat
                 return (this as any)[(this as any).length - 1];
             }
         } else {
-            let value: TSource;
+            let value: TSource | undefined;
             let hasValue = false;
 
             for (const element of this) {
@@ -33,7 +36,7 @@ export default function lastOrDefault<TSource>(this: Iterable<TSource>, predicat
             }
 
             if (hasValue) {
-                return value;
+                return value as TSource;
             }
         }
     }

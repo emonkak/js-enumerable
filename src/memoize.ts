@@ -1,6 +1,6 @@
 export default function memoize<TSource>(this: Iterable<TSource>): Iterable<TSource> {
     let buffer: TSource[] = [];
-    let iterator = this[Symbol.iterator]();
+    let iterator: Iterator<TSource> | null = this[Symbol.iterator]();
 
     return {
         *[Symbol.iterator]() {
@@ -10,7 +10,7 @@ export default function memoize<TSource>(this: Iterable<TSource>): Iterable<TSou
                 while (true) {
                     let result: IteratorResult<TSource>;
                     try {
-                        result = iterator.next();
+                        result = iterator!.next();
                     } catch (e) {
                         iterator = null;
                         throw e;
