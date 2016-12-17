@@ -4,11 +4,11 @@
   "description": "Provides the individual methods of LINQ as a module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --declaration --rootDir src && cp LICENSE README.md package.json dist/",
+    "build": "tsc --declaration && cp LICENSE README.md package.json dist/src/",
     "cover": "nyc npm test",
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rm -fr dist",
-    "precover": "rm -fr .nyc_output coverage",
+    "prebuild": "rm -f -r dist",
+    "precover": "rm -f -r .nyc_output coverage",
     "test": "mocha --recursive --compilers ts:ts-node/register",
     "watch": "tsc --watch"
   },
