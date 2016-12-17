@@ -8,6 +8,6 @@ describe('any()', () => {
         assert.strictEqual(new Enumerable([0]).any(), false);
         assert.strictEqual(new Enumerable([1, 3]).any(n => n % 2 === 0), false);
         assert.strictEqual(new Enumerable([]).any(), false);
-        assert.strictEqual(new Enumerable([]).any(n => n % 2 === 0), false);
+        assert.strictEqual(new Enumerable([] as number[]).any(n => n % 2 === 0), false);
     });
 });

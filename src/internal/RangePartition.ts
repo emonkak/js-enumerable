@@ -42,7 +42,9 @@ export default class RangePartition extends Partition<number> {
         return this._start + index;
     }
 
-    elementAtOrDefault(index: number, defaultValue?: number): number {
+    elementAtOrDefault(index: number): number | null;
+    elementAtOrDefault(index: number, defaultValue: number): number;
+    elementAtOrDefault(index: number, defaultValue: number | null = null): number | null {
         return index >= (this._end - this._start) ? defaultValue : this._start + index;
     }
 
@@ -50,7 +52,9 @@ export default class RangePartition extends Partition<number> {
         return this._start;
     }
 
-    firstOrDefault(defaultValue?: number): number {
+    firstOrDefault(): number | null;
+    firstOrDefault(defaultValue: number): number;
+    firstOrDefault(defaultValue: number | null = null): number | null {
         return this._start;
     }
 
@@ -58,7 +62,9 @@ export default class RangePartition extends Partition<number> {
         return this._end - 1;
     }
 
-    lastOrDefault(defaultValue?: number): number {
+    lastOrDefault(): number | null;
+    lastOrDefault(defaultValue: number): number;
+    lastOrDefault(defaultValue: number | null = null): number | null {
         return this._end - 1;
     }
 }

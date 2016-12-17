@@ -8,6 +8,7 @@
     "noUnusedLocals": true,
     "outDir": "dist",
     "sourceMap": true,
+    "strictNullChecks": true,
     "target": "es2015"
   },
   "exclude": [

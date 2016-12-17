@@ -1,6 +1,9 @@
-export default function singleOrDefault<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean, defaultValue: TSource = null): TSource {
+export default function singleOrDefault<TSource>(this: Iterable<TSource>): TSource | null;
+export default function singleOrDefault<TSource>(this: Iterable<TSource>, predicate: (element: TSource) => boolean): TSource | null;
+export default function singleOrDefault<TSource>(this: Iterable<TSource>, predicate: ((element: TSource) => boolean) | null, defaultValue: TSource): TSource;
+export default function singleOrDefault<TSource>(this: Iterable<TSource>, predicate?: ((element: TSource) => boolean) | null, defaultValue: TSource | null = null): TSource | null {
     if (predicate) {
-        let value: TSource;
+        let value: TSource | undefined;
         let hasValue = false;
 
         for (const element of this) {
@@ -14,7 +17,7 @@ export default function singleOrDefault<TSource>(this: Iterable<TSource>, predic
         }
 
         if (hasValue) {
-            return value;
+            return value as TSource;
         }
     } else {
         if (Array.isArray(this)) {
@@ -25,7 +28,7 @@ export default function singleOrDefault<TSource>(this: Iterable<TSource>, predic
                 return defaultValue;
             }
         } else {
-            let value: TSource;
+            let value: TSource | undefined;
             let hasValue = false;
 
             for (const element of this) {
@@ -37,7 +40,7 @@ export default function singleOrDefault<TSource>(this: Iterable<TSource>, predic
             }
 
             if (hasValue) {
-                return value;
+                return value as TSource;
             }
         }
     }

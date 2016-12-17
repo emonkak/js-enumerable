@@ -18,7 +18,7 @@ describe('elementAtOrDefault()', () => {
     it('should returns a default value if the index is out of range', () => {
         const xs = [1, 2, 3, 4];
 
-        assert.strictEqual(new Enumerable(xs).elementAtOrDefault(4, null), null);
+        assert.strictEqual(new Enumerable(xs).elementAtOrDefault(4, 123), 123);
         assert.strictEqual(new Enumerable(xs).elementAtOrDefault(4), null);
     });
 });

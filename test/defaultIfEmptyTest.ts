@@ -7,6 +7,6 @@ describe('defaultIfEmpty()', () => {
     });
 
     it('should returns the specified value in a singleton collection if the sequence is empty', () => {
-        assert.deepEqual(new Enumerable([]).defaultIfEmpty(123).toArray(), [123]);
+        assert.deepEqual(new Enumerable([] as number[]).defaultIfEmpty(123).toArray(), [123]);
     });
 });

@@ -11,9 +11,9 @@ describe('lastOrDefault()', () => {
 
     it('should returns null if the sequence contains no elements', () => {
         assert.strictEqual(new Enumerable([]).lastOrDefault(), null);
-        assert.strictEqual(new Enumerable([]).lastOrDefault(null, 123), 123);
+        assert.strictEqual(new Enumerable([] as number[]).lastOrDefault(null, 123), 123);
         assert.strictEqual(new Enumerable([][Symbol.iterator]()).lastOrDefault(), null);
-        assert.strictEqual(new Enumerable([][Symbol.iterator]()).lastOrDefault(null, 123), 123);
+        assert.strictEqual(new Enumerable(([] as number[])[Symbol.iterator]()).lastOrDefault(null, 123), 123);
         assert.strictEqual(new Enumerable([1, 2, 3, 4]).lastOrDefault(x => x > 10), null);
         assert.strictEqual(new Enumerable([1, 2, 3, 4]).lastOrDefault(x => x > 10, 123), 123);
     });

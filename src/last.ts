@@ -3,7 +3,7 @@ import { noElements } from './internal/errors';
 
 export default function last<TSource>(this: Iterable<TSource>, predicate?: (value: TSource) => boolean): TSource {
     if (predicate) {
-        let value: TSource;
+        let value: TSource | undefined;
         let hasValue = false;
 
         for (const element of this) {
@@ -14,7 +14,7 @@ export default function last<TSource>(this: Iterable<TSource>, predicate?: (valu
         }
 
         if (hasValue) {
-            return value;
+            return value as TSource;
         }
     } else {
         if (this instanceof Partition) {
@@ -25,7 +25,7 @@ export default function last<TSource>(this: Iterable<TSource>, predicate?: (valu
                 return (this as any)[(this as any).length - 1];
             }
         } else {
-            let value: TSource;
+            let value: TSource | undefined;
             let hasValue = false;
 
             for (const element of this) {
@@ -34,7 +34,7 @@ export default function last<TSource>(this: Iterable<TSource>, predicate?: (valu
             }
 
             if (hasValue) {
-                return value;
+                return value as TSource;
             }
         }
     }

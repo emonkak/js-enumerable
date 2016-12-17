@@ -24,11 +24,11 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         }
     }
 
-    thenBy<TKey>(keySelector?: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {
+    thenBy<TKey>(keySelector: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {
         return new OrderedEnumerable(this._source, keySelector, false, this._getComparer());
     }
 
-    thenByDescending<TKey>(keySelector?: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {
+    thenByDescending<TKey>(keySelector: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {
         return new OrderedEnumerable(this._source, keySelector, true, this._getComparer());
     }
 
@@ -91,7 +91,10 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         }
     }
 
-    firstOrDefault(predicate?: (element: TElement) => boolean, defaultValue: TElement = null): TElement {
+    firstOrDefault(): TElement | null;
+    firstOrDefault(predicate: (element: TElement) => boolean): TElement | null;
+    firstOrDefault(predicate: ((element: TElement) => boolean) | null, defaultValue: TElement): TElement;
+    firstOrDefault(predicate?: ((element: TElement) => boolean) | null, defaultValue: TElement | null = null): TElement | null {
         const iterator = this._source[Symbol.iterator]();
 
         if (predicate) {
@@ -193,7 +196,10 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         }
     }
 
-    lastOrDefault(predicate?: (element: TElement) => boolean, defaultValue: TElement = null): TElement {
+    lastOrDefault(): TElement | null;
+    lastOrDefault(predicate: (value: TElement) => boolean): TElement | null;
+    lastOrDefault(predicate: ((value: TElement) => boolean) | null, defaultValue: TElement): TElement;
+    lastOrDefault(predicate?: ((element: TElement) => boolean) | null, defaultValue: TElement | null = null): TElement | null {
         const iterator = this._source[Symbol.iterator]();
 
         if (predicate) {
@@ -270,7 +276,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return current;
     }
 
-    lastOrDefaultInPartition(minIndex: number, maxIndex: number, defaultValue: TElement = null): TElement {
+    lastOrDefaultInPartition(minIndex: number, maxIndex: number, defaultValue: TElement | null = null): TElement | null {
         const array = Array.from(this._source);
         const count = array.length;
         const comparer = this._getComparer();
@@ -309,9 +315,11 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         return quickSelect(array, comparer, 0, count - 1, index);
     }
 
-    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
+    elementAtOrDefault(index: number): TElement | null;
+    elementAtOrDefault(index: number, defaultValue: TElement): TElement;
+    elementAtOrDefault(index: number, defaultValue: TElement | null = null): TElement | null {
         if (index === 0) {
-            return this.firstOrDefault(null, defaultValue);
+            return this.firstOrDefault(null, defaultValue as TElement);
         }
         const array = Array.from(this._source);
         const count = array.length;

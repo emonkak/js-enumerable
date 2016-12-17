@@ -30,7 +30,9 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
         return this._element;
     }
 
-    elementAtOrDefault(index: number, defaultValue?: TResult): TResult {
+    elementAtOrDefault(index: number): TResult | null;
+    elementAtOrDefault(index: number, defaultValue: TResult): TResult;
+    elementAtOrDefault(index: number, defaultValue: TResult | null = null): TResult | null {
         return index >= (this._count) ? defaultValue : this._element;
     }
 
@@ -38,7 +40,9 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
         return this._element;
     }
 
-    firstOrDefault(defaultValue?: TResult): TResult {
+    firstOrDefault(): TResult | null;
+    firstOrDefault(defaultValue: TResult): TResult;
+    firstOrDefault(defaultValue: TResult | null = null): TResult | null {
         return this._element;
     }
 
@@ -46,7 +50,9 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
         return this._element;
     }
 
-    lastOrDefault(defaultValue?: TResult): TResult {
+    lastOrDefault(): TResult | null;
+    lastOrDefault(defaultValue: TResult): TResult;
+    lastOrDefault(defaultValue: TResult | null = null): TResult | null {
         return this._element;
     }
 }

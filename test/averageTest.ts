@@ -9,6 +9,6 @@ describe('average()', () => {
 
     it('should throws the exception if the sequence contains no elements', () => {
         assert.throws(() => new Enumerable([]).average(), Error);
-        assert.throws(() => new Enumerable([]).average(n => n * 2), Error);
+        assert.throws(() => new Enumerable([] as number[]).average(n => n * 2), Error);
     });
 });

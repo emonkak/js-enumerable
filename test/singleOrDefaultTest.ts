@@ -10,9 +10,9 @@ describe('singleOrDefault()', () => {
 
     it('should returns a default value if the sequence is empty', () => {
         assert.strictEqual(new Enumerable([]).singleOrDefault(), null);
-        assert.strictEqual(new Enumerable([]).singleOrDefault(null, 123), 123);
+        assert.strictEqual(new Enumerable([] as number[]).singleOrDefault(null, 123), 123);
         assert.strictEqual(new Enumerable([][Symbol.iterator]()).singleOrDefault(), null);
-        assert.strictEqual(new Enumerable([][Symbol.iterator]()).singleOrDefault(null, 123), 123);
+        assert.strictEqual(new Enumerable(([] as number[])[Symbol.iterator]()).singleOrDefault(null, 123), 123);
         assert.strictEqual(new Enumerable([1, 2]).singleOrDefault(), null);
         assert.strictEqual(new Enumerable([1, 2]).singleOrDefault(null, 123), 123);
         assert.strictEqual(new Enumerable([1, 2][Symbol.iterator]()).singleOrDefault(), null);

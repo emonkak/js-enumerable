@@ -2,7 +2,7 @@ import { moreThanOneMatch, noElements } from './internal/errors';
 
 export default function single<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean): TSource {
     if (predicate) {
-        let value: TSource;
+        let value: TSource | undefined;
         let hasValue = false;
 
         for (const element of this) {
@@ -16,7 +16,7 @@ export default function single<TSource>(this: Iterable<TSource>, predicate?: (el
         }
 
         if (hasValue) {
-            return value;
+            return value as TSource;
         }
     } else {
         if (Array.isArray(this)) {
@@ -29,7 +29,7 @@ export default function single<TSource>(this: Iterable<TSource>, predicate?: (el
                 throw moreThanOneMatch();
             }
         } else {
-            let value: TSource;
+            let value: TSource | undefined;
             let hasValue = false;
 
             for (const element of this) {
@@ -41,7 +41,7 @@ export default function single<TSource>(this: Iterable<TSource>, predicate?: (el
             }
 
             if (hasValue) {
-                return value;
+                return value as TSource;
             }
         }
     }

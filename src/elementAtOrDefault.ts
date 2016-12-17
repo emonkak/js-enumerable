@@ -1,6 +1,8 @@
 import Partition from './internal/Partition';
 
-export default function elementAtOrDefault<TSource>(this: Iterable<TSource>, index: number, defaultValue: TSource = null): TSource {
+export default function elementAtOrDefault<TSource>(this: Iterable<TSource>, index: number): TSource | null;
+export default function elementAtOrDefault<TSource>(this: Iterable<TSource>, index: number, defaultValue: TSource): TSource;
+export default function elementAtOrDefault<TSource>(this: Iterable<TSource>, index: number, defaultValue: TSource | null = null): TSource | null {
     if (this instanceof Partition) {
         return (this as any).elementAtOrDefault(index, defaultValue);
     }

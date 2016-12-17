@@ -33,15 +33,19 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
         return this._source.elementAt(this._minIndex);
     }
 
-    firstOrDefault(defaultValue: TElement = null): TElement {
-        return this._source.elementAtOrDefault(this._minIndex, defaultValue);
+    firstOrDefault(): TElement | null;
+    firstOrDefault(defaultValue: TElement): TElement;
+    firstOrDefault(defaultValue: TElement | null = null): TElement | null {
+        return this._source.elementAtOrDefault(this._minIndex, defaultValue as TElement);
     }
 
     last(): TElement {
         return this._source.lastInPartition(this._minIndex, this._maxIndex);
     }
 
-    lastOrDefault(defaultValue: TElement = null): TElement {
+    lastOrDefault(): TElement | null;
+    lastOrDefault(defaultValue: TElement): TElement;
+    lastOrDefault(defaultValue: TElement | null = null): TElement | null {
         return this._source.lastOrDefaultInPartition(this._minIndex, this._maxIndex, defaultValue);
     }
 
@@ -52,10 +56,12 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
         return this._source.elementAt(index + this._minIndex);
     }
 
-    elementAtOrDefault(index: number, defaultValue: TElement = null): TElement {
+    elementAtOrDefault(index: number): TElement | null;
+    elementAtOrDefault(index: number, defaultValue: TElement): TElement;
+    elementAtOrDefault(index: number, defaultValue: TElement | null = null): TElement | null {
         if (index > this._maxIndex - this._minIndex) {
             return defaultValue;
         }
-        return this._source.elementAtOrDefault(index + this._minIndex, defaultValue);
+        return this._source.elementAtOrDefault(index + this._minIndex, defaultValue as TElement);
     }
 }
