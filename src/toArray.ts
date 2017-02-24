@@ -1,3 +1,3 @@
 export default function toArray<TSource>(this: Iterable<TSource>): TSource[] {
-    return Array.from(this);
+    return Array.isArray(this) ? this as TSource[] : Array.from(this);
 }
