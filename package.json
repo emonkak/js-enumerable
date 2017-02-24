@@ -1,6 +1,6 @@
 {
   "name": "@emonkak/enumerable",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Provides the individual methods of LINQ as a module",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,6 @@
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rm -f -r dist",
     "precover": "rm -f -r .nyc_output coverage",
-    "prepublish": "npm run build",
     "test": "mocha --recursive --compilers ts:ts-node/register",
     "watch": "tsc --watch"
   },
