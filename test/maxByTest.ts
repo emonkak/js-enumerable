@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('maxBy()', () => {
     it('should returns the elements with the minimum key value by using the default comparer to compare key values', () => {

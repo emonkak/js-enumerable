@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../bundle';
+import Enumerable from '../Enumerable';
 
 describe('generate()', () => {
     it('should generates a sequence by mimicking a for loop', () => {

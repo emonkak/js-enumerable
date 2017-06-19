@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('toLookup()', () => {
     it('should creates a generic Map<TKey, TElement> from an Iterable<T>', () => {

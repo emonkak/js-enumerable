@@ -1,6 +1,6 @@
 {
   "name": "@emonkak/enumerable",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Provides the individual methods of LINQ as a module",
   "main": "index.js",
   "scripts": {
@@ -20,18 +20,18 @@
   },
   "homepage": "https://github.com/emonkak/js-enumerable",
   "devDependencies": {
-    "@types/mocha": "^2.2.33",
-    "@types/node": "^6.0.52",
-    "@types/sinon": "^1.16.33",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.31",
+    "@types/sinon": "^2.3.1",
     "cash-cp": "^0.2.0",
     "cash-rm": "^0.2.0",
-    "coveralls": "^2.11.15",
-    "mocha": "^3.2.0",
-    "nyc": "^10.0.0",
-    "sinon": "^1.17.6",
-    "ts-node": "^1.7.2",
-    "tslint": "^4.0.2",
-    "typescript": "^2.1.4"
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
+    "sinon": "^2.3.4",
+    "ts-node": "^3.0.6",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
   },
   "nyc": {
     "extension": [

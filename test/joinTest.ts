@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('join()', () => {
     it('should correlates the elements of two sequences based on matching keys', () => {

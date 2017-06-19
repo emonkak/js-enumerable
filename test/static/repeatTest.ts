@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from '../bundle';
+import Enumerable from '../Enumerable';
 
 describe('repeat()', () => {
     it('should generates a sequence by repeating the given value', () => {

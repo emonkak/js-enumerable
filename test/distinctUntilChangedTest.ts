@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('distinctUntilChanged()', () => {
     it('should returns consecutive distinct elements', () => {

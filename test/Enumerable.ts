@@ -65,6 +65,7 @@ import '../src/extensions/takeWhile';
 import '../src/extensions/toArray';
 import '../src/extensions/toDictionary';
 import '../src/extensions/toLookup';
+import '../src/extensions/toObject';
 import '../src/extensions/union';
 import '../src/extensions/where';
 import '../src/extensions/while';

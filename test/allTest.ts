@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('all()', () => {
     it('should determines whether all elements of a sequence satisfy a condition', () => {

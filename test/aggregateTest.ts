@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('aggregate()', () => {
     it('should applies an accumulator function over a sequence', () => {

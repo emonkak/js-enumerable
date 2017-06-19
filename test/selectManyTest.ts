@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('selectMany()', () => {
     it('should projects each element of a sequence to a Iterable<T>', () => {

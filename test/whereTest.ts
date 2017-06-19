@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('where()', () => {
     it('should filters a sequence of values based on a predicate', () => {
