@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('orderBy()', () => {
     it('should sorts the elements of a sequence in ascending order according to a key', () => {

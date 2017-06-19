@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('firstOrDefault()', () => {
     it('should returns the first element of a sequence', () => {

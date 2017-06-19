@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('groupBy()', () => {
     it('should groups the elements of a sequence according to a specified key selector function', () => {

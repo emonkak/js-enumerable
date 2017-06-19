@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('takeLast()', () => {
     it('should returns a specified number of contiguous elements from the end of the sequence', () => {

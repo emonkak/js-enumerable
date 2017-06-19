@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as sinon from 'sinon';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('finally()', () => {
     it('should creates a sequence whose termination or disposal of an enumerator causes a finally action to be executed', () => {

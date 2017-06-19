@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('take()', () => {
     it('should returns a specified number of contiguous elements from the start of a sequence', () => {

@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as sinon from 'sinon';
-import Enumerable from './bundle';
+import Enumerable from './Enumerable';
 
 describe('catch()', () => {
     it('should creates a sequence that corresponds to the source sequence', () => {
