@@ -2,7 +2,7 @@ import EmptyPartition from './EmptyPartition';
 import Partition from './Partition';
 
 export default class RepeatPartition<TResult> extends Partition<TResult> {
-    constructor(private _element: TResult, private _count: number) {
+    constructor(private readonly _element: TResult, private readonly _count: number) {
         super();
     }
 

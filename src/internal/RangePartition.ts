@@ -3,9 +3,9 @@ import EmptyPartition from './EmptyPartition';
 import Partition from './Partition';
 
 export default class RangePartition extends Partition<number> {
-    private _start: number;
+    private readonly _start: number;
 
-    private _end: number;
+    private readonly _end: number;
 
     constructor(start: number, count: number) {
         super();

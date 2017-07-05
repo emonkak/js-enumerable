@@ -8,9 +8,9 @@ const defualtComparer: (first: any, second: any) => number = (first, second) => 
 
 export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TElement> {
     constructor(_source: Iterable<TElement>,
-                private _keySelector: (value: TElement) => TKey,
-                private _descending: boolean,
-                private _parentComparer: (first: TElement, second: TElement) => number = defualtComparer) {
+                private readonly _keySelector: (value: TElement) => TKey,
+                private readonly _descending: boolean,
+                private readonly _parentComparer: (first: TElement, second: TElement) => number = defualtComparer) {
         super(_source);
     }
 

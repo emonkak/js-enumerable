@@ -4,9 +4,9 @@ import Partition from './Partition';
 import { noElements } from './errors';
 
 export default class OrderedPartition<TElement> extends Partition<TElement> {
-    constructor(private _source: OrderedEnumerable<TElement, any>,
-                private _minIndex: number,
-                private _maxIndex: number) {
+    constructor(private readonly _source: OrderedEnumerable<TElement, any>,
+                private readonly _minIndex: number,
+                private readonly _maxIndex: number) {
         super();
     }
 
