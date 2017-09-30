@@ -26,8 +26,10 @@ import toArray from '@emonkak/enumerable/toArray';
     ::toArray();  // => [4]
 ```
 
-But ECMAScript This-Binding Syntax is still in a proposal yet.
-You can use the extension modules instead of ECMAScript This-Binding Syntax.
+But This-Binding Syntax is still in a proposal yet.
+So you can not use this without transpiring.
+
+You can use the extension modules instead of this.
 The extension modules add methods to `Enumerable` class.
 
 ```javascript
