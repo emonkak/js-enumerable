@@ -1,6 +1,5 @@
 import concatFn from '../concat';
-import { Enumerable } from '../internal/Enumerable';
 
-export default function concat<TSource>(second: Iterable<TSource>): (source: Enumerable<TSource>) => Enumerable<TSource> {
-    return (source) => source.lift<TSource>(concatFn.call(source.source, second));
+export default function concat<TSource>(second: Iterable<TSource>): (source: Iterable<TSource>) => Iterable<TSource> {
+    return (source) => concatFn.call(source, second);
 }

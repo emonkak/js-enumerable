@@ -1,6 +1,5 @@
 import selectManyFn from '../selectMany';
-import { Enumerable } from '../internal/Enumerable';
 
-export default function selectMany<TSource, TResult>(collectionSelector: (element: TSource) => Iterable<TResult>): (source: Enumerable<TSource>) => Enumerable<TResult> {
-    return (source) => source.lift<TResult>(selectManyFn.call(source.source, collectionSelector));
+export default function selectMany<TSource, TResult>(collectionSelector: (element: TSource) => Iterable<TResult>): (source: Iterable<TSource>) => Iterable<TResult> {
+    return (source) => selectManyFn.call(source, collectionSelector);
 }

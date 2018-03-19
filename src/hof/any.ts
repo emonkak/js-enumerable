@@ -1,6 +1,5 @@
 import anyFn from '../any';
-import { Enumerable } from '../internal/Enumerable';
 
-export default function any<TSource>(predicate?: (element: TSource) => boolean): (source: Enumerable<TSource>) => boolean {
+export default function any<TSource>(predicate?: (element: TSource) => boolean): (source: Iterable<TSource>) => boolean {
     return (source) => anyFn.call(source, predicate);
 }

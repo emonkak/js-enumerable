@@ -1,6 +1,5 @@
 import onErrorResumeNextFn from '../onErrorResumeNext';
-import { Enumerable } from '../internal/Enumerable';
 
-export default function onErrorResumeNext<TSource>(second: Iterable<TSource>): (source: Enumerable<TSource>) => Enumerable<TSource> {
-    return (source) => source.lift<TSource>(onErrorResumeNextFn.call(source.source, second));
+export default function onErrorResumeNext<TSource>(second: Iterable<TSource>): (source: Iterable<TSource>) => Iterable<TSource> {
+    return (source) => onErrorResumeNextFn.call(source, second);
 }

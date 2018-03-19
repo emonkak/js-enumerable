@@ -1,6 +1,5 @@
 import exceptFn from '../except';
-import { Enumerable } from '../internal/Enumerable';
 
-export default function except<TSource>(second: Iterable<TSource>): (source: Enumerable<TSource>) => Enumerable<TSource> {
-    return (source) => source.lift<TSource>(exceptFn.call(source.source, second));
+export default function except<TSource>(second: Iterable<TSource>): (source: Iterable<TSource>) => Iterable<TSource> {
+    return (source) => exceptFn.call(source, second);
 }

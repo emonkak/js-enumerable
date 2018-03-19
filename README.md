@@ -30,7 +30,7 @@ But This-Binding Syntax is still in a proposal yet.
 So you can not use this without transpiring.
 
 You can use the extension modules instead of this.
-The extension modules add methods to `Enumerable` class.
+The extension modules add the method to `Enumerable` class.
 
 ```javascript
 import Enumerable from '@emonkak/enumerable';
@@ -43,6 +43,26 @@ new Enumerable([1, 2, 3])
     .where((x) => x % 2 === 0)
     .select((x) => x * 2)
     .toArray();  // => [4]
+```
+
+You can also use the HOF(higher-order function) modules.
+
+The HOF modules provides the function that returns the function that receives the `Enumerable` and returns the result.
+This function can uses by `pipe()` and `let()` method of `Enumerable`.
+
+```javascript
+import Enumerable from '@emonkak/enumerable';
+
+import select from '@emonkak/enumerable/hof/select';
+import where from '@emonkak/enumerable/hof/where';
+import toArray from '@emonkak/enumerable/hof/toArray';
+
+new Enumerable([1, 2, 3])
+    .pipe(
+        where((x) => x % 2 === 0),
+        select((x) => x * 2)
+    )
+    .let(toArray());  // => [4]
 ```
 
 ## API
