@@ -1,10 +1,10 @@
 {
   "name": "@emonkak/enumerable",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "LINQ to Object for JavaScript that provides the individual methods as a module.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --declaration && cp LICENSE README.md package.json dist/src/",
+    "build": "tsc --declaration && cp LICENSE README.md package.json dist/",
     "cover": "nyc npm test",
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rm -f -r dist",
