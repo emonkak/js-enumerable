@@ -42,7 +42,7 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
     }
 
     skip(count: number): Enumerable<TElement> {
-        return new Enumerable(new OrderedPartition(this, count, Number.MAX_VALUE));
+        return new Enumerable(new OrderedPartition(this, count, Infinity));
     }
 
     first(predicate?: (element: TElement) => boolean): TElement {
