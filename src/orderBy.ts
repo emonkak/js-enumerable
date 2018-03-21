@@ -6,5 +6,8 @@ export default function orderBy<TSource, TKey>(this: Iterable<TSource>, keySelec
     if (keySelector == null) {
         keySelector = value => value as any;
     }
+    if (this instanceof OrderedEnumerable) {
+        return (this as any).thenBy(keySelector);
+    }
     return new OrderedEnumerable(this, keySelector, false);
 }
