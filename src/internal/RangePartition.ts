@@ -1,14 +1,13 @@
-import { argumentOutOfRange } from './errors';
 import EmptyPartition from './EmptyPartition';
-import Partition from './Partition';
+import { IPartition, partitionSymbol } from './partition';
+import { argumentOutOfRange } from './errors';
 
-export default class RangePartition extends Partition<number> {
+export default class RangePartition implements IPartition<number> {
     private readonly _start: number;
 
     private readonly _end: number;
 
     constructor(start: number, count: number) {
-        super();
         this._start = start;
         this._end = start + count;
     }
@@ -23,14 +22,18 @@ export default class RangePartition extends Partition<number> {
         } while (current < end);
     }
 
-    skip(count: number): Partition<number> {
+    [partitionSymbol](): boolean {
+        return true;
+    }
+
+    skip(count: number): IPartition<number> {
         if (count >= this._end - this._start) {
             return new EmptyPartition<number>();
         }
         return new RangePartition(this._start + count, this._end - this._start - count);
     }
 
-    take(count: number): Partition<number> {
+    take(count: number): IPartition<number> {
         const currentCount = this._end - this._start;
         return new RangePartition(this._start, count > currentCount ? currentCount : count);
     }
@@ -53,8 +56,8 @@ export default class RangePartition extends Partition<number> {
     }
 
     firstOrDefault(): number | null;
-    firstOrDefault(defaultValue: number): number;
-    firstOrDefault(defaultValue: number | null = null): number | null {
+    firstOrDefault(predicate: null, defaultValue: number): number;
+    firstOrDefault(predicate?: null, defaultValue: number | null = null): number | null {
         return this._start;
     }
 
@@ -63,8 +66,8 @@ export default class RangePartition extends Partition<number> {
     }
 
     lastOrDefault(): number | null;
-    lastOrDefault(defaultValue: number): number;
-    lastOrDefault(defaultValue: number | null = null): number | null {
+    lastOrDefault(predicate: null, defaultValue: number): number;
+    lastOrDefault(predicate?: null, defaultValue: number | null = null): number | null {
         return this._end - 1;
     }
 }

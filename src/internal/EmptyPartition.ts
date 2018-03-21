@@ -1,24 +1,24 @@
-import Partition from './Partition';
+import { IPartition, partitionSymbol } from './partition';
 import { noElements } from './errors';
 
-export default class EmptyPartition<TElement> extends Partition<TElement> implements Iterator<TElement> {
-    constructor() {
-        super();
-    }
-
+export default class EmptyPartition<TElement>  implements IPartition<TElement>, Iterator<TElement> {
     [Symbol.iterator](): Iterator<TElement> {
         return this;
+    }
+
+    [partitionSymbol](): boolean {
+        return true;
     }
 
     next(): IteratorResult<TElement> {
         return { done: true, value: null as any };
     }
 
-    skip(count: number): Partition<TElement> {
+    skip(count: number): IPartition<TElement> {
         return this;
     }
 
-    take(count: number): Partition<TElement> {
+    take(count: number): IPartition<TElement> {
         return this;
     }
 
@@ -37,8 +37,8 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
     }
 
     firstOrDefault(): TElement | null;
-    firstOrDefault(defaultValue: TElement): TElement;
-    firstOrDefault(defaultValue: TElement | null = null): TElement | null {
+    firstOrDefault(predicate: null, defaultValue: TElement): TElement;
+    firstOrDefault(predicate?: null, defaultValue: TElement | null = null): TElement | null {
         return defaultValue;
     }
 
@@ -47,8 +47,8 @@ export default class EmptyPartition<TElement> extends Partition<TElement> implem
     }
 
     lastOrDefault(): TElement | null;
-    lastOrDefault(defaultValue: TElement): TElement;
-    lastOrDefault(defaultValue: TElement | null = null): TElement | null {
+    lastOrDefault(predicate: null, defaultValue: TElement): TElement;
+    lastOrDefault(predicate?: null, defaultValue: TElement | null = null): TElement | null {
         return defaultValue;
     }
 }

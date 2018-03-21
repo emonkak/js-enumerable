@@ -1,27 +1,30 @@
 import EmptyPartition from './EmptyPartition';
 import OrderedEnumerable from './OrderedEnumerable';
-import Partition from './Partition';
+import { IPartition, partitionSymbol } from './partition';
 import { noElements } from './errors';
 
-export default class OrderedPartition<TElement> extends Partition<TElement> {
+export default class OrderedPartition<TElement> implements IPartition<TElement> {
     constructor(private readonly _source: OrderedEnumerable<TElement, any>,
                 private readonly _minIndex: number,
                 private readonly _maxIndex: number) {
-        super();
     }
 
     [Symbol.iterator](): Iterator<TElement> {
         return this._source.toArrayInPartition(this._minIndex, this._maxIndex)[Symbol.iterator]();
     }
 
-    skip(count: number): Partition<TElement> {
+    [partitionSymbol](): boolean {
+        return true;
+    }
+
+    skip(count: number): IPartition<TElement> {
         const minIndex = this._minIndex + count;
         return minIndex > this._maxIndex
             ? new EmptyPartition<TElement>()
             : new OrderedPartition(this._source, minIndex, this._maxIndex);
     }
 
-    take(count: number): Partition<TElement> {
+    take(count: number): IPartition<TElement> {
         let maxIndex = this._minIndex + count - 1;
         if (maxIndex > this._maxIndex) {
             maxIndex = this._maxIndex;
@@ -34,8 +37,8 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
     }
 
     firstOrDefault(): TElement | null;
-    firstOrDefault(defaultValue: TElement): TElement;
-    firstOrDefault(defaultValue: TElement | null = null): TElement | null {
+    firstOrDefault(predicate: null, defaultValue: TElement): TElement;
+    firstOrDefault(predicate?: null, defaultValue: TElement | null = null): TElement | null {
         return this._source.elementAtOrDefault(this._minIndex, defaultValue as TElement);
     }
 
@@ -44,8 +47,8 @@ export default class OrderedPartition<TElement> extends Partition<TElement> {
     }
 
     lastOrDefault(): TElement | null;
-    lastOrDefault(defaultValue: TElement): TElement;
-    lastOrDefault(defaultValue: TElement | null = null): TElement | null {
+    lastOrDefault(predicate: null, defaultValue: TElement): TElement;
+    lastOrDefault(predicate?: null, defaultValue: TElement | null = null): TElement | null {
         return this._source.lastOrDefaultInPartition(this._minIndex, this._maxIndex, defaultValue);
     }
 

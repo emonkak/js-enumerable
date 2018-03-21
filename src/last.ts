@@ -1,4 +1,4 @@
-import Partition from './internal/Partition';
+import { isPartition } from './internal/partition';
 import { noElements } from './internal/errors';
 
 export default function last<TSource>(this: Iterable<TSource>, predicate?: (value: TSource) => boolean): TSource {
@@ -17,7 +17,7 @@ export default function last<TSource>(this: Iterable<TSource>, predicate?: (valu
             return value as TSource;
         }
     } else {
-        if (this instanceof Partition) {
+        if (isPartition(this)) {
             return (this as any).last();
         }
         if (Array.isArray(this)) {

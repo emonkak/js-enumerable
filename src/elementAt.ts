@@ -1,8 +1,8 @@
-import Partition from './internal/Partition';
+import { isPartition } from './internal/partition';
 import { noElements } from './internal/errors';
 
 export default function elementAt<TSource>(this: Iterable<TSource>, index: number): TSource {
-    if (this instanceof Partition) {
+    if (isPartition(this)) {
         return (this as any).elementAt(index);
     }
     if (Array.isArray(this)) {

@@ -1,4 +1,4 @@
-import Partition from './internal/Partition';
+import { isPartition } from './internal/partition';
 
 export default function firstOrDefault<TSource>(this: Iterable<TSource>): TSource | null;
 export default function firstOrDefault<TSource>(this: Iterable<TSource>, predicate: (element: TSource) => boolean): TSource | null;
@@ -11,8 +11,8 @@ export default function firstOrDefault<TSource>(this: Iterable<TSource>, predica
             }
         }
     } else {
-        if (this instanceof Partition) {
-            return (this as any).firstOrDefault(defaultValue);
+        if (isPartition(this)) {
+            return (this as any).firstOrDefault(null, defaultValue);
         }
         if (Array.isArray(this)) {
             if ((this as any).length > 0) {

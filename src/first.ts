@@ -1,4 +1,4 @@
-import Partition from './internal/Partition';
+import { isPartition } from './internal/partition';
 import { noElements } from './internal/errors';
 
 export default function first<TSource>(this: Iterable<TSource>, predicate?: (element: TSource) => boolean): TSource {
@@ -9,7 +9,7 @@ export default function first<TSource>(this: Iterable<TSource>, predicate?: (ele
             }
         }
     } else {
-        if (this instanceof Partition) {
+        if (isPartition(this)) {
             return (this as any).first();
         }
         if (Array.isArray(this)) {

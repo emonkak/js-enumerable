@@ -1,10 +1,10 @@
-import Partition from './internal/Partition';
+import { isPartition } from './internal/partition';
 
 export default function skip<TSource>(this: Iterable<TSource>, count: number): Iterable<TSource> {
     if (count <= 0) {
         return this;
     }
-    if (this instanceof Partition) {
+    if (isPartition(this)) {
         return (this as any).skip(count);
     }
     if (Array.isArray(this)) {

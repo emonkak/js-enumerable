@@ -2,11 +2,12 @@ import OrderedPartition from './OrderedPartition';
 import partialQuickSort from './partialQuickSort';
 import quickSelect from './quickSelect';
 import { Enumerable } from './Enumerable';
+import { IPartition, partitionSymbol } from './partition';
 import { noElements } from './errors';
 
 const defualtComparer: (first: any, second: any) => number = (first, second) => 0;
 
-export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TElement> {
+export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TElement> implements IPartition<TElement> {
     constructor(_source: Iterable<TElement>,
                 private readonly _keySelector: (value: TElement) => TKey,
                 private readonly _descending: boolean,
@@ -22,6 +23,10 @@ export default class OrderedEnumerable<TElement, TKey> extends Enumerable<TEleme
         for (const element of this.toArray()) {
             yield element;
         }
+    }
+
+    [partitionSymbol](): boolean {
+        return true;
     }
 
     thenBy<TKey>(keySelector: (value: TElement) => TKey): OrderedEnumerable<TElement, TKey> {

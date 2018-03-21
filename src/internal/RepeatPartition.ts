@@ -1,9 +1,9 @@
 import EmptyPartition from './EmptyPartition';
-import Partition from './Partition';
+import { IPartition, partitionSymbol } from './partition';
 
-export default class RepeatPartition<TResult> extends Partition<TResult> {
-    constructor(private readonly _element: TResult, private readonly _count: number) {
-        super();
+export default class RepeatPartition<TResult> implements IPartition<TResult> {
+    constructor(private readonly _element: TResult,
+                private readonly _count: number) {
     }
 
     *[Symbol.iterator](): Iterator<TResult> {
@@ -12,14 +12,18 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
         }
     }
 
-    skip(count: number): Partition<TResult> {
+    [partitionSymbol](): boolean {
+        return true;
+    }
+
+    skip(count: number): IPartition<TResult> {
         if (count >= this._count) {
             return new EmptyPartition<TResult>();
         }
         return new RepeatPartition(this._element, this._count - count);
     }
 
-    take(count: number): Partition<TResult> {
+    take(count: number): IPartition<TResult> {
         return new RepeatPartition(this._element, count > this._count ? this._count : count);
     }
 
@@ -41,8 +45,8 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
     }
 
     firstOrDefault(): TResult | null;
-    firstOrDefault(defaultValue: TResult): TResult;
-    firstOrDefault(defaultValue: TResult | null = null): TResult | null {
+    firstOrDefault(predicate: null, defaultValue: TResult): TResult;
+    firstOrDefault(predicate?: null, defaultValue: TResult | null = null): TResult | null {
         return this._element;
     }
 
@@ -51,8 +55,8 @@ export default class RepeatPartition<TResult> extends Partition<TResult> {
     }
 
     lastOrDefault(): TResult | null;
-    lastOrDefault(defaultValue: TResult): TResult;
-    lastOrDefault(defaultValue: TResult | null = null): TResult | null {
+    lastOrDefault(predicate: null, defaultValue: TResult): TResult;
+    lastOrDefault(predicate?: null, defaultValue: TResult | null = null): TResult | null {
         return this._element;
     }
 }
