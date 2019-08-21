@@ -2,7 +2,7 @@ import memoizeFn from '../memoize';
 import { Enumerable } from '../internal/Enumerable';
 
 function memoize<TSource>(this: Enumerable<TSource>): Enumerable<TSource> {
-    return this.lift<TSource>(memoizeFn.call(this.source));
+    return new Enumerable<TSource>(memoizeFn.call(this.source));
 }
 
 Enumerable.prototype.memoize = memoize;

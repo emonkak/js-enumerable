@@ -2,7 +2,7 @@ import whereFn from '../where';
 import { Enumerable } from '../internal/Enumerable';
 
 function where<TSource>(this: Enumerable<TSource>, predicate: (item: TSource) => boolean): Enumerable<TSource> {
-    return this.lift<TSource>(whereFn.call(this.source, predicate));
+    return new Enumerable<TSource>(whereFn.call(this.source, predicate));
 }
 
 Enumerable.prototype.where = where;
