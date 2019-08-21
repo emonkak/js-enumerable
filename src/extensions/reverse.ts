@@ -2,7 +2,7 @@ import reverseFn from '../reverse';
 import { Enumerable } from '../internal/Enumerable';
 
 function reverse<TSource>(this: Enumerable<TSource>): Enumerable<TSource> {
-    return this.lift<TSource>(reverseFn.call(this.source));
+    return new Enumerable<TSource>(reverseFn.call(this.source));
 }
 
 Enumerable.prototype.reverse = reverse;

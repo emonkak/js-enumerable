@@ -2,7 +2,7 @@ import skipWhileFn from '../skipWhile';
 import { Enumerable } from '../internal/Enumerable';
 
 function skipWhile<TSource>(this: Enumerable<TSource>, predicate: (element: TSource) => boolean): Enumerable<TSource> {
-    return this.lift<TSource>(skipWhileFn.call(this.source, predicate));
+    return new Enumerable<TSource>(skipWhileFn.call(this.source, predicate));
 }
 
 Enumerable.prototype.skipWhile = skipWhile;

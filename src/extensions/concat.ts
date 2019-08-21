@@ -2,7 +2,7 @@ import concatFn from '../concat';
 import { Enumerable } from '../internal/Enumerable';
 
 function concat<TSource>(this: Enumerable<TSource>, second: Iterable<TSource>): Enumerable<TSource> {
-    return this.lift<TSource>(concatFn.call(this.source, second));
+    return new Enumerable<TSource>(concatFn.call(this.source, second));
 }
 
 Enumerable.prototype.concat = concat;

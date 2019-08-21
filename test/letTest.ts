@@ -1,0 +1,56 @@
+import * as assert from 'assert';
+import Enumerable from './Enumerable';
+
+import aggregate from '../src/hof/aggregate';
+import all from '../src/hof/all';
+import any from '../src/hof/any';
+import average from '../src/hof/average';
+import count from '../src/hof/count';
+import elementAt from '../src/hof/elementAt';
+import elementAtOrDefault from '../src/hof/elementAtOrDefault';
+import first from '../src/hof/first';
+import firstOrDefault from '../src/hof/firstOrDefault';
+import forEach from '../src/hof/forEach';
+import isEmpty from '../src/hof/isEmpty';
+import last from '../src/hof/last';
+import lastOrDefault from '../src/hof/lastOrDefault';
+import max from '../src/hof/max';
+import maxBy from '../src/hof/maxBy';
+import min from '../src/hof/min';
+import minBy from '../src/hof/minBy';
+import single from '../src/hof/single';
+import singleOrDefault from '../src/hof/singleOrDefault';
+import sum from '../src/hof/sum';
+import toArray from '../src/hof/toArray';
+import toDictionary from '../src/hof/toDictionary';
+import toLookup from '../src/hof/toLookup';
+import toObject from '../src/hof/toObject';
+
+describe('let()', () => {
+    it('can passes a higher-order functions', () => {
+        assert.deepEqual(new Enumerable([1, 2]).let(aggregate(0, (acc, x) => acc + x)), 3);
+        assert.strictEqual(new Enumerable([]).let(all(x => x)), true);
+        assert.strictEqual(new Enumerable([]).let(any(x => x)), false);
+        assert.strictEqual(new Enumerable([1]).let(average(x => x)), 1);
+        assert.strictEqual(new Enumerable([]).let(count()), 0);
+        assert.strictEqual(new Enumerable([]).let(elementAtOrDefault(0, 1)), 1);
+        assert.strictEqual(new Enumerable([1]).let(elementAt(0)), 1);
+        assert.strictEqual(new Enumerable([1]).let(first(() => true)), 1);
+        assert.strictEqual(new Enumerable([]).let(firstOrDefault(() => true, 1)), 1);
+        assert.strictEqual(new Enumerable([]).let(forEach(() => {})), undefined);
+        assert.strictEqual(new Enumerable([]).let(isEmpty()), true);
+        assert.strictEqual(new Enumerable([]).let(lastOrDefault(() => true, 1)), 1);
+        assert.strictEqual(new Enumerable([1]).let(last(() => true)), 1);
+        assert.strictEqual(new Enumerable([1]).let(max(x => x)), 1);
+        assert.deepEqual(new Enumerable([]).let(maxBy(x => x)), []);
+        assert.strictEqual(new Enumerable([1]).let(min(x => x)), 1);
+        assert.deepEqual(new Enumerable([]).let(minBy(x => x)), []);
+        assert.strictEqual(new Enumerable([1]).let(single(() => true)), 1);
+        assert.strictEqual(new Enumerable([]).let(singleOrDefault(() => true, 1)), 1);
+        assert.strictEqual(new Enumerable([]).let(sum()), 0);
+        assert.deepEqual(new Enumerable([]).let(toArray()), []);
+        assert(new Enumerable([]).let(toDictionary(x => x, x => x)) instanceof Map);
+        assert(new Enumerable([]).let(toLookup(x => x, x => x)) instanceof Map);
+        assert.deepEqual(new Enumerable([]).let(toObject(x => x + '', x => x)), {});
+    });
+});

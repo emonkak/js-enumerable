@@ -2,7 +2,7 @@ import joinFn from '../join';
 import { Enumerable } from '../internal/Enumerable';
 
 function join<TOuter, TInner, TKey, TResult>(this: Enumerable<TOuter>, inner: Iterable<TInner>, outerKeySelector: (element: TOuter) => TKey, innerKeySelector: (element: TInner) => TKey, resultSelector: (outer: TOuter, inner: TInner) => TResult): Enumerable<TResult> {
-    return this.lift<TResult>(joinFn.call(this.source, inner, outerKeySelector, innerKeySelector, resultSelector));
+    return new Enumerable<TResult>(joinFn.call(this.source, inner, outerKeySelector, innerKeySelector, resultSelector));
 }
 
 Enumerable.prototype.join = join;
