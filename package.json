@@ -9,7 +9,7 @@
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rm -f -r dist",
     "precover": "rm -f -r .nyc_output coverage",
-    "test": "mocha --recursive --compilers ts:ts-node/register",
+    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --recursive --require ts-node/register './test/**/*Test.ts'",
     "watch": "tsc --watch"
   },
   "author": "Shota Nozaki",

@@ -12,7 +12,7 @@ describe('catch()', () => {
     });
 
     it('should concatenate it with the sequence resulting from calling an exception handler function in case of an error', () => {
-        const xs = {
+        const xs: Iterable<number> = {
             [Symbol.iterator]: function*() {
                 yield 1;
                 yield 2;
@@ -20,8 +20,14 @@ describe('catch()', () => {
                 throw new Error();
             }
         };
-        const ys = [4, 5, 6];
-        const handler = sinon.spy((e: Error) => ys);
+        const ys: Iterable<number> = {
+            [Symbol.iterator]: function*() {
+                yield 4;
+                yield 5;
+                yield 6;
+            }
+        };
+        const handler = sinon.spy((e: Error[]) => ys);
         assert.deepEqual(new Enumerable(xs).catch(handler).toArray(), [1, 2, 3, 4, 5, 6]);
         sinon.assert.called(handler);
         sinon.assert.calledWith(handler, sinon.match.instanceOf(Error));
