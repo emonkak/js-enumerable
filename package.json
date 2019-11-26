@@ -20,18 +20,18 @@
   },
   "homepage": "https://github.com/emonkak/js-enumerable",
   "devDependencies": {
-    "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.31",
-    "@types/sinon": "^2.3.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.14",
+    "@types/sinon": "^7.5.1",
     "cash-cp": "^0.2.0",
     "cash-rm": "^0.2.0",
-    "coveralls": "^3.0.0",
-    "mocha": "^3.5.3",
-    "nyc": "^11.2.1",
-    "sinon": "^4.0.0",
-    "ts-node": "^3.3.0",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.3"
+    "coveralls": "^3.0.8",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "sinon": "^7.5.0",
+    "ts-node": "^8.5.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
   },
   "nyc": {
     "extension": [

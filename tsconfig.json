@@ -1,20 +1,22 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "strictNullChecks": true,
-    "target": "es2015"
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*.ts"
-  ]
+    "compilerOptions": {
+        "module": "es2015",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "target": "es2015"
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
 }
