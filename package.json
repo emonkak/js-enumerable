@@ -1,6 +1,6 @@
 {
   "name": "@emonkak/enumerable",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "LINQ to Object for JavaScript that provides the individual methods as a module.",
   "main": "index.js",
   "scripts": {
